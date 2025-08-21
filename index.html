@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+  <title>폼생성기</title>
+  <style>
+    a{text-decoration: none;}
+    *{margin: 0; padding: 0; box-sizing: border-box; } 
+    body{
+        max-width: 800px; margin: auto;
+        position: relative; overflow-x: hidden; font-size: 20px;
+    }
+    h1{text-align: center; margin: 0.5em 0;}
+    label { display: block; margin: 5px 0; }
+    .option-select{width: 90%; margin: auto; padding: 1em; border: 1px solid black; margin-bottom: 1em;}
+    .option-select label{font-size: 1.2em; margin-bottom: 0.5em;}
+    .option-select button{margin: 0.5em; margin-left: 0;}
+    .option-select input{font-size: 1em; padding: 0.3em 0.5em; border: none; border-bottom: 1px solid black;}
+    .result-box{ width: 90%; margin: auto;}
+    .btnBox{width: 100%; margin: auto;}
+    #result{width: 100%; background-color: white; padding: 1em; border: 1px solid black;}
+    button{background-color: white; font-size: 1.5em; padding: 0 0.5em; border-radius: 0.1em;}
+    #generate{border: 1px solid darkcyan; color: darkcyan;}
+    </style>
+</head>
+<body>
+    <h1>폼생성기</h1>
+
+    <div class="option-select">
+        <label>폼의 이름 <input type="text" class="form-name"></label>
+        <!-- 체크박스 -->
+        <label><input type="checkbox" value="name"> 성함</label>
+        <label><input type="checkbox" value="phone"> 연락처</label>
+        <label><input type="checkbox" value="place" id="place"> 지역</label>
+        <label><input type="checkbox" value="time"> 상담가능시간</label>
+
+        <label>옵션추가 갯수 <span style="font-size: 0.7em;">(순서대로 추가됩니다)</span> <input type="number" class="option-Count"></label>
+
+        <label>팝업창 url <input type="text" class="pop-url"></label>
+
+        <button id="generate">폼 생성</button>
+        <button id="copyBtn" data-clipboard-target="#result">복사하기</button>
+        <button onclick="sees()">초기화</button>
+    </div>
+
+    <div class="result-box">
+        <div class="btnBox">
+            <button onclick="sees('html')">HTML</button>
+            <button onclick="sees('css')">CSS</button>
+            <button onclick="sees('javascript')">JAVASCRIPT</button>
+        </div>
+        <div id="result" readonly></div>
+    </div>
+
+  <script>
+    const fields = {
+      name: `
+<div>
+  <span>성함</span>
+  <div class="input-box">
+    <input type="text" name="name" class="user-name" placeholder="성함" required />
+  </div>
+</div>`,
+
+      phone: `
+<div>
+  <span>연락처</span>
+  <div class="input-box telBox">
+    <div><select name="tel1" class="ph-Num1"><option>010</option></select></div>
+    <span>-</span>
+    <input type="text" name="tel2" maxlength="4" class="ph-Num2" required placeholder="연락처" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+    <span>-</span>
+    <input type="text" name="tel3" maxlength="4" class="ph-Num3" required placeholder="연락처" oninput="this.value=this.value.replace(/[^0-9]/g,'');" />
+  </div>
+</div>`,
+
+      time: `
+<div>
+  <span>희망 상담시간</span> 
+  <div class="selectBox">
+    <select name="option1" class="time-Option" required>
+      <option value="" disabled selected>-희망 상담시간 선택-</option>
+      <option value="10시~11시">10:00 ~ 11:00</option>
+      <option value="11시~12시">11:00 ~ 12:00</option>
+      <option value="13시~14시">13:00 ~ 14:00</option>
+      <option value="15시~16시">15:00 ~ 16:00</option>
+      <option value="16시~17시">16:00 ~ 17:00</option>
+      <option value="17시~18시">17:00 ~ 18:00</option>
+      <option value="익일오전중 진행">그 외 시간은 익일오전중 상담진행</option>
+    </select> 
+  </div>
+</div>`,
+
+      place: `
+<div class="place">
+  <span>지역</span>
+  <div>
+    <div>
+      <select id="province" name="province" required>
+        <option value="" selected>지역</option>
+        <option value="서울특별시">서울특별시</option>
+        <option value="부산광역시">부산광역시</option>
+        <option value="대구광역시">대구광역시</option>
+        <option value="인천광역시">인천광역시</option>
+        <option value="광주광역시">광주광역시</option>
+        <option value="대전광역시">대전광역시</option>
+        <option value="울산광역시">울산광역시</option>
+        <option value="세종특별자치시">세종특별자치시</option>
+        <option value="경기도">경기도</option>
+        <option value="강원도">강원도</option>
+        <option value="충청북도">충청북도</option>
+        <option value="충청남도">충청남도</option>
+        <option value="전라북도">전라북도</option>
+        <option value="전라남도">전라남도</option>
+        <option value="경상북도">경상북도</option>
+        <option value="경상남도">경상남도</option>
+        <option value="제주특별자치도">제주특별자치도</option>
+      </select>
+    </div>
+    <div>
+      <select id="city" name="city" required>
+        <option value="" selected>시/도/군</option>
+      </select>
+    </div>
+  </div>
+</div>`
+    };
+
+    function genH() {
+        const formsN=document.querySelector('.form-name').value;
+        const selected = document.querySelectorAll("input[type=checkbox]:checked");
+        const optAdd = Number(document.querySelector('.option-Count').value);
+        let code = `<form method="post" action="apply.html" class="formsBox" name="${formsN}">\n`;
+
+        selected.forEach(cb => {
+            code += fields[cb.value] + "\n";
+        });
+
+        if(optAdd){
+            for(let i=1; i<=optAdd; i++){
+                code += `
+<span></span>
+<div><input type="text" name="option${i}" placeholder=""/></div>` + "\n";
+            }
+        }
+
+        code += `  
+<div class="check-op">
+    <label>
+        <input type="checkbox" checked required> <span>개인정보 처리방침 동의</span>  &nbsp;
+    </label>
+    <span id="show-Box">[약관보기]</span>
+</div>
+<button type="submit" id="submit-button" class="subBtn">빠른 상담 신청하기</button>\n</form>`;
+        
+        document.getElementById("result").innerText = code;
+    }
+
+    function genJ(){
+        const popUrl=document.querySelector('.pop-url').value;
+        const checkbox = document.getElementById("place");
+        let codej='';
+        
+        if (checkbox.checked) {
+            codej=`
+const regionMap = {
+    '서울특별시': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
+    '부산광역시': ['강서구', '금정구', '기장군', '남구', '동구', '동래구', '부산진구', '북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구'],
+    '인천광역시': ['강화군', '계양구', '남동구', '동구', '미추홀구', '부평구', '서구', '연수구', '옹진군', '중구'],
+    '대구광역시': ['남구', '달서구', '달성군', '동구', '북구', '서구', '수성구', '중구'],
+    '광주광역시': ['광산구', '남구', '동구', '북구', '서구'],
+    '대전광역시': ['대덕구', '동구', '서구', '유성구', '중구'],
+    '울산광역시': ['남구', '동구', '북구', '울주군', '중구'],
+    '세종특별자치시': ['세종시'],
+    '경기도': ['가평군', '고양시', '과천시', '광명시', '광주시', '구리시', '군포시', '김포시', '남양주시', '동두천시', '부천시', '성남시', '수원시', '시흥시', '안산시', '안성시', '안양시', '양주시', '양평군', '여주시', '연천군', '오산시', '용인시', '의왕시', '의정부시', '이천시', '파주시', '평택시', '포천시', '하남시', '화성시'],
+    '강원도': ['강릉시', '고성군', '동해시', '삼척시', '속초시', '양구군', '양양군', '영월군', '원주시', '인제군', '정선군', '철원군', '춘천시', '태백시', '평창군', '홍천군', '화천군', '횡성군'],
+    '충청북도': ['괴산군', '단양군', '보은군', '영동군', '옥천군', '음성군', '제천시', '진천군', '청주시', '충주시'],
+    '충청남도': ['계룡시', '공주시', '금산군', '논산시', '당진시', '보령시', '부여군', '서산시', '서천군', '아산시', '예산군', '천안시', '청양군', '태안군', '홍성군'],
+    '경상북도': ['경산시', '경주시', '고령군', '구미시', '군위군', '김천시', '문경시', '봉화군', '상주시', '성주군', '안동시', '영덕군', '영양군', '영주시', '영천시', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '포항시'],
+    '경상남도': ['거제시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군', '양산시', '의령군', '진주시', '창녕군', '창원시', '통영시', '하동군', '함안군', '함양군', '합천군'],
+    '전라북도': ['고창군', '군산시', '김제시', '남원시', '무주군', '부안군', '순창군', '완주군', '익산시', '임실군', '장수군', '전주시', '정읍시', '진안군'],
+    '전라남도': ['강진군', '고흥군', '곡성군', '광양시', '구례군', '나주시', '담양군', '목포시', '무안군', '보성군', '순천시', '신안군', '여수시', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군'],
+    '제주특별자치도': ['서귀포시', '제주시']
+};
+const provinceEl = document.getElementById("province");
+const cityEl     = document.getElementById("city");
+provinceEl.addEventListener("change", () => {
+    const prov = provinceEl.value;
+    const list = regionMap[prov] || [];
+  // 기존 옵션 초기화
+    cityEl.innerHTML = '<option value="" selected>시/도/군</option>';
+  // 새로운 옵션 추가
+    list.forEach(name => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        cityEl.appendChild(opt);
+    });
+});
+
+// 팝업 창
+const openPop = document.getElementById("show-Box");
+openPop.addEventListener('click', () => {
+    const popup = window.open(
+        '${popUrl}',
+        '개인정보이용동의',
+        'width=800,height=500,scrollbars=yes'
+    );      
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        alert('팝업 차단이 감지되었습니다! 팝업 허용을 설정해주세요.');
+    }
+});
+
+//폼이동 버튼
+function movSecton(){
+        const target = document.querySelector('.formsBox');
+        const offset = 80; // 원하는 여백(px)
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+        });
+    }
+document.querySelector('버튼이름').addEventListener('click',()=>{
+    movSecton();
+})
+        `;
+        } else {
+            codej=`
+// 팝업 창
+const openPop = document.getElementById("show-Box");
+openPop.addEventListener('click', () => {
+    const popup = window.open(
+        '${popUrl}',
+        '개인정보이용동의',
+        'width=800,height=500,scrollbars=yes'
+    );      
+    if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+        alert('팝업 차단이 감지되었습니다! 팝업 허용을 설정해주세요.');
+    }
+});
+
+//폼이동 버튼
+function movSecton(){
+        const target = document.querySelector('.formsBox');
+        const offset = 80; // 원하는 여백(px)
+        const targetY = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+        });
+    }
+document.querySelector('버튼이름').addEventListener('click',()=>{
+    movSecton();
+})
+        `;
+        }
+        document.getElementById("result").innerText = codej;
+    }
+
+    function genC(){
+        let code='';
+        code=`
+/* form css는 맘대로 할것 */
+a{text-decoration: none;}
+*{margin: 0; padding: 0; box-sizing: border-box; } 
+body{
+    max-width: 800px; margin: auto;
+    position: relative; overflow-x: hidden; font-size: 20px;
+}
+
+/* 1. 모든 기본 스타일 초기화 */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    background: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+}
+
+/* 3. 자동완성 배경 제거 */
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    box-shadow: 0 0 0px 1000px white inset;
+    -webkit-text-fill-color: #000;
+}
+
+input{font-size: 1em; padding: 1.15em 1em; border: 1.5px solid #a5a5a57c; border-radius: 0.5em; margin-top: 0.2em;}
+select{font-size: 1em; padding: 1em 1em; border: 1.5px solid #a5a5a57c; border-radius: 0.5em; margin-top: 0.2em;}
+        `;
+        document.getElementById("result").innerText = code;
+    }
+
+    document.getElementById("generate").addEventListener("click", () => {
+        genH();
+    });
+
+    function sees(tex){
+        if(tex==='html'){genH();}else if(tex==='css'){genC();}else if(tex==='javascript'){genJ();}else{document.getElementById("result").innerText ="";}
+    }
+
+
+    // Clipboard.js
+    new ClipboardJS('#copyBtn')
+      .on('success', () => alert("폼 코드가 복사되었습니다!"))
+      .on('error', () => alert("설정확인 요함"));
+  </script>
+</body>
+</html>
