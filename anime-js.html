@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>anime.js 랜딩 전체 예제 + 코드 보기</title>
+<!-- <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap" rel="stylesheet"> -->
+
+<style>
+:root {
+  --bg:#0b0f14; --txt:#e7eef7; --muted:#98a2b3; --pri:#6ae3ff; --card:#121821;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body {
+  font-family:'Pretendard',sans-serif;
+  background:var(--bg);
+  color:var(--txt);
+  max-width:1000px;
+  margin:auto;
+  padding:40px 20px;
+  line-height:1.6;
+}
+section {
+  background:var(--card);
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 10px 30px rgba(0,0,0,.25);
+  margin:24px 0;
+  padding:24px;
+}
+h1,h2{margin-bottom:12px;}
+.muted{color:var(--muted);}
+.btn {
+  position:relative;
+  overflow:hidden;
+  background:#1b2431;
+  color:white;
+  padding:10px 16px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  margin:4px;
+}
+.ripple {
+  position:absolute;
+  pointer-events:none;
+  width:12px;
+  height:12px;
+  border-radius:50%;
+  background:radial-gradient(circle,#6ae3ff,transparent 60%);
+  transform:translate(-50%,-50%) scale(0);
+  opacity:0.7;
+}
+.badge {
+  display:inline-block;
+  padding:4px 12px;
+  border-radius:999px;
+  background:#11202b;
+  color:#8dd7ff;
+  font-size:13px;
+  margin-bottom:10px;
+}
+
+/* 코드 보기 UI */
+.codeBox{margin-top:20px;padding:16px;background:#111722;border-radius:12px;border:1px solid rgba(255,255,255,.1);}
+.buttonBox{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+button.toggle, button.copyCdn, button.copyCss, button.copyHtml, button.copyJs{
+  background:#0071e2;color:white;border:none;border-radius:6px;padding:6px 12px;cursor:pointer;font-size:14px;
+}
+button:hover{background:#1288ff;}
+.hideCode{height:0;overflow:hidden;transition:height .3s ease;}
+.hideCode.open{height:auto;}
+pre{background:#1e1e1e;color:#f8f8f2;padding:1em;border-radius:8px;overflow-x:auto;font-size:0.9em;line-height:1.5;}
+code{font-family:'Courier New',monospace;}
+</style>
+</head>
+<body>
+
+<h1>anime.js 랜딩 모션 전체 샘플 (미리보기 + 코드 보기/복사)</h1>
+<p class="muted">각 섹션별로 실제 애니메이션 미리보기와 코드 보기/복사 기능이 제공됩니다.</p>
+
+<div id="demo-container">
+
+  <!-- 예시: 아래에 섹션 1~16이 순차적으로 추가될 예정 -->
+  <!-- 섹션 1 : 텍스트 스태거 -->
+<section id="sec1">
+  <div class="badge">1️⃣ 텍스트 스태거</div>
+  <h2 id="hero-title">애니메이션으로 랜딩에 생기를 불어넣자</h2>
+  <button class="btn ripple-btn" id="replayTitle">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>#hero-title span{display:inline-block;transform:translateY(30px);opacity:0;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="hero-title"&gt;애니메이션으로 랜딩에 생기를 불어넣자&lt;/h2&gt;
+&lt;button id="replayTitle" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const hero=document.getElementById('hero-title');
+  const text=[...hero.textContent];
+  hero.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    hero.appendChild(s);
+  });
+  function playHero(){
+    anime({targets:'#hero-title span',translateY:[30,0],opacity:[0,1],duration:700,delay:anime.stagger(25),easing:'easeOutExpo'});
+  }
+  playHero();
+  document.getElementById('replayTitle').addEventListener('click',playHero);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 2 : 버튼 Ripple -->
+<section id="sec2">
+  <div class="badge">2️⃣ 버튼 Ripple</div>
+  <button class="btn ripple-btn">문의하기</button>
+  <button class="btn ripple-btn">상담 신청</button>
+  <button class="btn ripple-btn">자세히 보기</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>.btn{position:relative;overflow:hidden;}
+.ripple{position:absolute;pointer-events:none;width:12px;height:12px;border-radius:50%;
+background:radial-gradient(circle,#6ae3ff,transparent 60%);transform:translate(-50%,-50%) scale(0);opacity:0.7;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;button class="btn ripple-btn"&gt;문의하기&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.querySelectorAll('.ripple-btn').forEach(btn=>{
+  btn.addEventListener('click',e=>{
+    const r=document.createElement('span');
+    r.className='ripple';
+    const rect=btn.getBoundingClientRect();
+    r.style.left=(e.clientX-rect.left)+'px';
+    r.style.top=(e.clientY-rect.top)+'px';
+    btn.appendChild(r);
+    anime({targets:r,scale:[0,12],opacity:[0.7,0],duration:700,easing:'easeOutCubic',complete:()=>r.remove()});
+  });
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 3 : SVG 라인 드로잉 -->
+<section id="sec3">
+  <div class="badge">3️⃣ SVG 라인 드로잉</div>
+  <svg viewBox="0 0 64 64" width="80">
+    <path id="check-path" d="M10 34 L26 49 L54 15" stroke="#8dd7ff" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <button class="btn ripple-btn" id="draw">다시 그리기</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>svg{display:block;margin:auto;}
+path{stroke:#8dd7ff;stroke-width:5;fill:none;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;svg viewBox="0 0 64 64"&gt;
+  &lt;path id="check-path" d="M10 34 L26 49 L54 15"/&gt;
+&lt;/svg&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const path=document.getElementById('check-path');
+  function drawCheck(){
+    const len=path.getTotalLength();
+    path.style.strokeDasharray=len;
+    path.style.strokeDashoffset=len;
+    anime({targets:path,strokeDashoffset:[len,0],easing:'easeInOutSine',duration:900});
+  }
+  drawCheck();
+  document.getElementById('draw').addEventListener('click',drawCheck);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 4 : 숫자 카운트업 -->
+<section id="sec4">
+  <div class="badge">4️⃣ 숫자 카운트업</div>
+  <div class="counter" id="counter" style="font-size:40px;font-weight:800;">0</div>
+  <button class="btn ripple-btn" id="countBtn">카운트 시작</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>.counter{font-size:40px;font-weight:800;text-align:center;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;div class="counter" id="counter"&gt;0&lt;/div&gt;
+&lt;button id="countBtn" class="btn ripple-btn"&gt;카운트 시작&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const counter=document.getElementById('counter');
+  document.getElementById('countBtn').addEventListener('click',()=>{
+    const obj={val:0};
+    anime({targets:obj,val:987,round:1,duration:1200,easing:'easeOutCubic',
+      update:(a)=>counter.textContent=a.animations[0].currentValue});
+  });
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 5 : 타임라인 + 인옵 once -->
+<section id="sec5">
+  <div class="badge">5️⃣ 타임라인 + 인옵(once)</div>
+  <div class="tl-item" style="opacity:0;transform:translateY(30px) rotate(-2deg);">빠른 로딩</div>
+  <div class="tl-item" style="opacity:0;transform:translateY(30px) rotate(-2deg);">자연스러운 모션</div>
+  <div class="tl-item" style="opacity:0;transform:translateY(30px) rotate(-2deg);">재사용 쉬움</div>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>.tl-item{margin:8px 0;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;div class="tl-item"&gt;빠른 로딩&lt;/div&gt;
+&lt;div class="tl-item"&gt;자연스러운 모션&lt;/div&gt;
+&lt;div class="tl-item"&gt;재사용 쉬움&lt;/div&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const items=document.querySelectorAll('.tl-item');
+  const tl=anime.timeline({autoplay:false,easing:'easeOutExpo'});
+  tl.add({targets:items[0],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500})
+    .add({targets:items[1],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500},'-=250')
+    .add({targets:items[2],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500},'-=250');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{if(en.isIntersecting){tl.play();io.disconnect();}});
+  },{threshold:.3});
+  io.observe(document.getElementById('sec5'));
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 6 : 타자기 효과 -->
+<section id="sec6">
+  <div class="badge">6️⃣ 타자기 효과</div>
+  <h2 id="typewriter" class="tw">우리는 지금, 가장 잘 만드는 랜딩을 만든다.</h2>
+  <button class="btn ripple-btn" id="twReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>.tw::after{content:'';position:absolute;right:-6px;top:8px;width:2px;height:1.2em;background:#8dd7ff;animation:blink .9s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="typewriter" class="tw"&gt;우리는 지금, 가장 잘 만드는 랜딩을 만든다.&lt;/h2&gt;
+&lt;button id="twReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('typewriter');
+  function play(){
+    const text=el.textContent;
+    el.textContent='';
+    [...text].forEach((ch,i)=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      s.style.opacity=0;
+      s.style.display='inline-block';
+      el.appendChild(s);
+    });
+    anime({targets:'#typewriter span',opacity:[0,1],duration:20,delay:anime.stagger(55)});
+  }
+  play();
+  document.getElementById('twReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 7 : Wave 파도 효과 -->
+<section id="sec7">
+  <div class="badge">7️⃣ Wave 파도 효과</div>
+  <h2 id="waveText">WAVE EFFECT 애니메이션</h2>
+  <button class="btn ripple-btn" id="waveToggle">토글</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CDN</h4>
+      <pre><code>&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"&gt;&lt;/script&gt;</code></pre>
+      <h4>CSS</h4>
+      <pre><code>#waveText span{display:inline-block;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="waveText"&gt;WAVE EFFECT 애니메이션&lt;/h2&gt;
+&lt;button id="waveToggle" class="btn ripple-btn"&gt;토글&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('waveText');
+  const text=[...el.textContent];
+  el.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    el.appendChild(s);
+  });
+  const letters=el.querySelectorAll('span');
+  let running=true;
+  let inst=anime({
+    targets:letters,
+    translateY:[0,-12,0],
+    duration:1200,
+    easing:'easeInOutSine',
+    delay:anime.stagger(60),
+    loop:true
+  });
+  document.getElementById('waveToggle').addEventListener('click',()=>{
+    running=!running;
+    if(running){inst.play();}else{inst.pause();}
+  });
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 8 : 3D Flip -->
+<section id="sec8">
+  <div class="badge">8️⃣ 3D Flip</div>
+  <h2 id="flipText">FLIP IN LETTERS</h2>
+  <button class="btn ripple-btn" id="flipReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CSS</h4>
+      <pre><code>#flipText span{display:inline-block;transform-origin:50% 100%;}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="flipText"&gt;FLIP IN LETTERS&lt;/h2&gt;
+&lt;button id="flipReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('flipText');
+  const text=[...el.textContent];
+  el.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    s.style.display='inline-block';
+    el.appendChild(s);
+  });
+  function play(){
+    anime({targets:'#flipText span',rotateX:[90,0],opacity:[0,1],
+      easing:'easeOutBack',duration:700,delay:anime.stagger(40)});
+  }
+  play();
+  document.getElementById('flipReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 9 : Gradient Fill -->
+<section id="sec9">
+  <div class="badge">9️⃣ Gradient Fill Sweep</div>
+  <h2 id="fillText" style="background:linear-gradient(90deg,#8dd7ff,#fff,#8dd7ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;">
+  GRADIENT FILL SWEEP</h2>
+  <button class="btn ripple-btn" id="fillReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>CSS</h4>
+      <pre><code>#fillText{
+  background:linear-gradient(90deg,#8dd7ff,#fff,#8dd7ff);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  background-size:200% 100%;
+}</code></pre>
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="fillText"&gt;GRADIENT FILL SWEEP&lt;/h2&gt;
+&lt;button id="fillReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('fillText');
+  function play(){
+    el.style.backgroundPosition='0% 0%';
+    anime({targets:el,backgroundPosition:['0% 0%','100% 0%'],duration:1200,easing:'easeInOutQuad'});
+  }
+  play();
+  document.getElementById('fillReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 10 : Scatter / Explode -->
+<section id="sec10">
+  <div class="badge">🔟 Scatter &amp; Explode</div>
+  <h2 id="explodeText">SCATTER & FADE</h2>
+  <button class="btn ripple-btn" id="explodeReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="explodeText"&gt;SCATTER &amp; FADE&lt;/h2&gt;
+&lt;button id="explodeReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('explodeText');
+  const text=[...el.textContent];
+  el.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    s.style.display='inline-block';
+    el.appendChild(s);
+  });
+  const letters=el.querySelectorAll('span');
+  function play(){
+    letters.forEach(l=>{l.style.opacity=1;l.style.transform='translate(0,0)';});
+    anime({
+      targets:letters,
+      translateX:()=>anime.random(-80,80),
+      translateY:()=>anime.random(-40,40),
+      opacity:[1,0],
+      easing:'easeOutQuad',
+      duration:600,
+      complete:()=>{
+        anime({targets:letters,translateX:0,translateY:0,opacity:1,duration:600,easing:'easeOutCubic',delay:anime.stagger(15)});
+      }
+    });
+  }
+  play();
+  document.getElementById('explodeReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 11 : Bounce -->
+<section id="sec11">
+  <div class="badge">1️⃣1️⃣ Bounce In</div>
+  <h2 id="bounceText">BOUNCE IN</h2>
+  <button class="btn ripple-btn" id="bounceReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="bounceText"&gt;BOUNCE IN&lt;/h2&gt;
+&lt;button id="bounceReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('bounceText');
+  const text=[...el.textContent];
+  el.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    s.style.display='inline-block';
+    el.appendChild(s);
+  });
+  function play(){
+    anime({targets:'#bounceText span',opacity:[0,1],scale:[0.4,1],
+      easing:'easeOutElastic(1,.5)',duration:900,delay:anime.stagger(35)});
+  }
+  play();
+  document.getElementById('bounceReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 12 : Blur In -->
+<section id="sec12">
+  <div class="badge">1️⃣2️⃣ Blur-in</div>
+  <h2 id="blurText">BLUR TO SHARP</h2>
+  <button class="btn ripple-btn" id="blurReplay">다시 재생</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="blurText"&gt;BLUR TO SHARP&lt;/h2&gt;
+&lt;button id="blurReplay" class="btn ripple-btn"&gt;다시 재생&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('blurText');
+  const text=[...el.textContent];
+  el.textContent='';
+  text.forEach(ch=>{
+    const s=document.createElement('span');
+    s.textContent=ch;
+    s.style.display='inline-block';
+    el.appendChild(s);
+  });
+  function play(){
+    anime({targets:'#blurText span',filter:['blur(8px)','blur(0px)'],opacity:[0,1],
+      easing:'easeOutQuad',duration:700,delay:anime.stagger(40)});
+  }
+  play();
+  document.getElementById('blurReplay').addEventListener('click',play);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 13 : Looping Marquee -->
+<section id="sec13">
+  <div class="badge">1️⃣3️⃣ Looping Marquee</div>
+  <div class="marquee-wrap" style="overflow:hidden;border-radius:12px;border:1px solid rgba(255,255,255,.08);">
+    <div id="marquee" style="white-space:nowrap;padding:10px 0;will-change:transform">
+      <span style="margin-right:40px;font-weight:600;">ANIME.JS • LANDING MOTION • PERFORMANCE •</span>
+      <span style="margin-right:40px;font-weight:600;">ANIME.JS • LANDING MOTION • PERFORMANCE •</span>
+      <span style="margin-right:40px;font-weight:600;">ANIME.JS • LANDING MOTION • PERFORMANCE •</span>
+    </div>
+  </div>
+  <button class="btn ripple-btn" id="marqToggle">토글</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;div class="marquee-wrap"&gt;
+  &lt;div id="marquee"&gt;
+    &lt;span&gt;ANIME.JS • LANDING MOTION • PERFORMANCE •&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;button id="marqToggle" class="btn ripple-btn"&gt;토글&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('marquee');
+  let running=true;
+  function totalW(){return el.scrollWidth;}
+  function start(){
+    el.style.transform='translateX(0)';
+    anime({targets:el,translateX:[0,-totalW()/2],duration:8000,easing:'linear',loop:true});
+  }
+  start();
+  document.getElementById('marqToggle').addEventListener('click',()=>{
+    running=!running;
+    if(!running) anime.running.forEach(a=>a.pause()); else start();
+  });
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 14 : 단어 단위 Stagger -->
+<section id="sec14">
+  <div class="badge">1️⃣4️⃣ 단어 단위 Stagger</div>
+  <h2 id="wordText">Performance first, motion second — but both matter.</h2>
+  <button class="btn ripple-btn" id="wordPlay">단어만</button>
+  <button class="btn ripple-btn" id="wordCascade">단어→글자</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="wordText"&gt;Performance first, motion second — but both matter.&lt;/h2&gt;
+&lt;button id="wordPlay" class="btn ripple-btn"&gt;단어만&lt;/button&gt;
+&lt;button id="wordCascade" class="btn ripple-btn"&gt;단어→글자&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('wordText');
+  const words=el.textContent.split(' ');
+  el.textContent='';
+  words.forEach(w=>{
+    const span=document.createElement('span');
+    span.textContent=w+' ';
+    span.className='word';
+    span.style.display='inline-block';
+    el.appendChild(span);
+  });
+  function wordOnly(){
+    anime({targets:'.word',opacity:[0,1],translateY:[16,0],
+      easing:'easeOutExpo',duration:600,delay:anime.stagger(80)});
+  }
+  function cascade(){
+    const all=[];
+    el.querySelectorAll('.word').forEach((w,i)=>{
+      const letters=w.textContent.trim().split('');
+      w.textContent='';
+      letters.forEach((l,j)=>{
+        const s=document.createElement('span');
+        s.textContent=l;
+        s.style.display='inline-block';
+        s.className='letter';
+        w.appendChild(s);
+        all.push({el:s,delay:i*120+j*12});
+      });
+    });
+    anime({targets:all.map(a=>a.el),
+      opacity:[0,1],translateY:[10,0],
+      duration:450,easing:'easeOutQuad',
+      delay:(t,i)=>all[i].delay});
+  }
+  wordOnly();
+  document.getElementById('wordPlay').addEventListener('click',wordOnly);
+  document.getElementById('wordCascade').addEventListener('click',cascade);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 15 : 스크롤 시퀀스 -->
+<section id="sec15">
+  <div class="badge">1️⃣5️⃣ 스크롤 시퀀스</div>
+  <h2 id="seqTitle">한 번에 전달되는 메시지</h2>
+  <p id="seqSub" class="muted">스크롤 진입 시 타이틀 → 서브 → CTA 순서로 자연스럽게</p>
+  <button id="seqCTA" class="btn ripple-btn">지금 시작하기</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;h2 id="seqTitle"&gt;한 번에 전달되는 메시지&lt;/h2&gt;
+&lt;p id="seqSub" class="muted"&gt;스크롤 진입 시 타이틀 → 서브 → CTA 순서로 자연스럽게&lt;/p&gt;
+&lt;button id="seqCTA" class="btn ripple-btn"&gt;지금 시작하기&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const sec=document.getElementById('sec15');
+  const t=sec.querySelector('#seqTitle');
+  const s=sec.querySelector('#seqSub');
+  const c=sec.querySelector('#seqCTA');
+  [t,s,c].forEach(el=>{
+    el.style.opacity=0;el.style.transform='translateY(24px)';
+  });
+  const tl=anime.timeline({autoplay:false,easing:'easeOutExpo'});
+  tl.add({targets:t,opacity:[0,1],translateY:[24,0],duration:600})
+    .add({targets:s,opacity:[0,1],translateY:[24,0],duration:500},'-=200')
+    .add({targets:c,opacity:[0,1],translateY:[24,0],duration:500},'-=150');
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){tl.play();io.disconnect();}
+    });
+  },{threshold:.4});
+  io.observe(sec);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 16 : SVG 텍스트 아웃라인 드로잉 -->
+<section id="sec16">
+  <div class="badge">1️⃣6️⃣ SVG 텍스트 아웃라인</div>
+  <svg viewBox="0 0 900 180" style="width:100%;height:auto;display:block;">
+    <text id="svgOutlineText" x="40" y="120" style="font-size:100px;font-weight:800;fill:transparent;stroke:#8dd7ff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2000;stroke-dashoffset:2000;letter-spacing:2px;">WITHUS</text>
+  </svg>
+  <button id="svgTextReplay" class="btn ripple-btn">다시 그리기</button>
+
+  <div class="codeBox">
+    <div class="buttonBox">
+      <button class="toggle">코드 보기/숨기기</button>
+      <button class="copyCdn">CDN</button>
+      <button class="copyCss">CSS</button>
+      <button class="copyHtml">HTML</button>
+      <button class="copyJs">JS</button>
+    </div>
+    <div class="hideCode">
+      <h4>HTML</h4>
+      <pre><code>&lt;svg viewBox="0 0 900 180"&gt;
+  &lt;text id="svgOutlineText" x="40" y="120"&gt;WITHUS&lt;/text&gt;
+&lt;/svg&gt;
+&lt;button id="svgTextReplay" class="btn ripple-btn"&gt;다시 그리기&lt;/button&gt;</code></pre>
+      <h4>JS</h4>
+      <pre><code>document.addEventListener('anime:ready',()=>{
+  const el=document.getElementById('svgOutlineText');
+  function draw(){
+    el.style.strokeDasharray='2000';
+    el.style.strokeDashoffset='2000';
+    anime({targets:el,strokeDashoffset:[2000,0],duration:1200,easing:'easeInOutSine'});
+  }
+  draw();
+  document.getElementById('svgTextReplay').addEventListener('click',draw);
+});</code></pre>
+    </div>
+  </div>
+</section>
+
+
+
+</div>
+
+<script>
+(function(){
+  const urls=[
+    'https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js',
+    'https://fastly.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js'
+  ];
+  let i=0;
+  function load(){
+    const s=document.createElement('script');
+    s.src=urls[i++];
+    s.onload=()=>document.dispatchEvent(new Event('anime:ready')); 
+    s.onerror=()=>{if(i<urls.length)load();};
+    document.head.appendChild(s);
+  }
+  load();
+})();
+</script>
+
+<script>
+// === anime.js 로드 이후 실행 ===
+document.addEventListener('anime:ready', () => {
+    // 1️⃣ 텍스트 스태거
+    const hero=document.getElementById('hero-title');
+    const text1=[...hero.textContent];
+    hero.textContent='';
+    text1.forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      hero.appendChild(s);
+    });
+    function playHero(){
+      anime({targets:'#hero-title span',translateY:[30,0],opacity:[0,1],duration:700,delay:anime.stagger(25),easing:'easeOutExpo'});
+    }
+    playHero();
+    document.getElementById('replayTitle').addEventListener('click',playHero);
+
+    // 3️⃣ SVG 라인 드로잉
+    const path=document.getElementById('check-path');
+    function drawCheck(){
+      const len=path.getTotalLength();
+      path.style.strokeDasharray=len;
+      path.style.strokeDashoffset=len;
+      anime({targets:path,strokeDashoffset:[len,0],easing:'easeInOutSine',duration:900});
+    }
+    drawCheck();
+    document.getElementById('draw').addEventListener('click',drawCheck);
+
+    // 4️⃣ 숫자 카운트업
+    const counter=document.getElementById('counter');
+    document.getElementById('countBtn').addEventListener('click',()=>{
+      const obj={val:0};
+      anime({targets:obj,val:987,round:1,duration:1200,easing:'easeOutCubic',
+        update:(a)=>counter.textContent=a.animations[0].currentValue});
+    });
+
+    // 5️⃣ 타임라인 + 인옵(once)
+    const items5=document.querySelectorAll('#sec5 .tl-item');
+    const tl5=anime.timeline({autoplay:false,easing:'easeOutExpo'});
+    tl5.add({targets:items5[0],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500})
+      .add({targets:items5[1],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500},'-=250')
+      .add({targets:items5[2],opacity:[0,1],translateY:[30,0],rotate:[-2,0],duration:500},'-=250');
+    const io5=new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{if(en.isIntersecting){tl5.play();io5.disconnect();}});
+    },{threshold:.3});
+    io5.observe(document.getElementById('sec5'));
+
+    // 6️⃣ 타자기 효과
+    const el6=document.getElementById('typewriter');
+    function play6(){
+      const text6=el6.textContent;
+      el6.textContent='';
+      [...text6].forEach((ch,i)=>{
+        const s=document.createElement('span');
+        s.textContent=ch;
+        s.style.opacity=0;
+        s.style.display='inline-block';
+        el6.appendChild(s);
+      });
+      anime({targets:'#typewriter span',opacity:[0,1],duration:20,delay:anime.stagger(55)});
+    }
+    play6();
+    document.getElementById('twReplay').addEventListener('click',play6);
+
+    // ✅ 7️⃣ Wave 파도 효과 (수정 완료)
+    function initWave(){
+      const el7=document.getElementById('waveText');
+      if(!el7) return;
+      const text7=[...el7.textContent];
+      el7.textContent='';
+      text7.forEach(ch=>{
+        const s=document.createElement('span');
+        s.textContent=ch;
+        s.style.display='inline-block';
+        el7.appendChild(s);
+      });
+
+      const letters7=el7.querySelectorAll('span');
+      let running7=true;
+      const inst7=anime({
+        targets:letters7,
+        translateY:[0,-12,0],
+        duration:1200,
+        easing:'easeInOutSine',
+        delay:anime.stagger(60),
+        loop:true
+      });
+
+      const toggle=document.getElementById('waveToggle');
+      if(toggle){
+        toggle.addEventListener('click',()=>{
+          running7=!running7;
+          if(running7) inst7.play();
+          else inst7.pause();
+        });
+      }
+    }
+
+    // DOM이 이미 준비되어 있으면 바로 실행, 아니면 대기
+    if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',initWave);
+    else initWave();
+
+    // 8️⃣ 3D Flip
+    const el8=document.getElementById('flipText');
+    const text8=[...el8.textContent];
+    el8.textContent='';
+    text8.forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      s.style.display='inline-block';
+      el8.appendChild(s);
+    });
+    function play8(){
+      anime({targets:'#flipText span',rotateX:[90,0],opacity:[0,1],
+        easing:'easeOutBack',duration:700,delay:anime.stagger(40)});
+    }
+    play8();
+    document.getElementById('flipReplay').addEventListener('click',play8);
+
+    // 9️⃣ Gradient Fill Sweep
+    const el9=document.getElementById('fillText');
+    function play9(){
+      el9.style.backgroundPosition='0% 0%';
+      anime({targets:el9,backgroundPosition:['0% 0%','100% 0%'],duration:1200,easing:'easeInOutQuad'});
+    }
+    play9();
+    document.getElementById('fillReplay').addEventListener('click',play9);
+
+    // 🔟 Scatter & Explode
+    const el10=document.getElementById('explodeText');
+    const text10=[...el10.textContent];
+    el10.textContent='';
+    text10.forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      s.style.display='inline-block';
+      el10.appendChild(s);
+    });
+    const letters10=el10.querySelectorAll('span');
+    function play10(){
+      letters10.forEach(l=>{l.style.opacity=1;l.style.transform='translate(0,0)';});
+      anime({
+        targets:letters10,
+        translateX:()=>anime.random(-80,80),
+        translateY:()=>anime.random(-40,40),
+        opacity:[1,0],
+        easing:'easeOutQuad',
+        duration:600,
+        complete:()=>{
+          anime({targets:letters10,translateX:0,translateY:0,opacity:1,duration:600,easing:'easeOutCubic',delay:anime.stagger(15)});
+        }
+      });
+    }
+    document.getElementById('explodeReplay').addEventListener('click',play10);
+
+    // 1️⃣1️⃣ Bounce In
+    const el11=document.getElementById('bounceText');
+    const text11=[...el11.textContent];
+    el11.textContent='';
+    text11.forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      s.style.display='inline-block';
+      el11.appendChild(s);
+    });
+    function play11(){
+      anime({targets:'#bounceText span',opacity:[0,1],scale:[0.4,1],
+        easing:'easeOutElastic(1,.5)',duration:900,delay:anime.stagger(35)});
+    }
+    play11();
+    document.getElementById('bounceReplay').addEventListener('click',play11);
+
+    // 1️⃣2️⃣ Blur-in
+    const el12=document.getElementById('blurText');
+    const text12=[...el12.textContent];
+    el12.textContent='';
+    text12.forEach(ch=>{
+      const s=document.createElement('span');
+      s.textContent=ch;
+      s.style.display='inline-block';
+      el12.appendChild(s);
+    });
+    function play12(){
+      anime({targets:'#blurText span',filter:['blur(8px)','blur(0px)'],opacity:[0,1],
+        easing:'easeOutQuad',duration:700,delay:anime.stagger(40)});
+    }
+    play12();
+    document.getElementById('blurReplay').addEventListener('click',play12);
+
+    // 1️⃣3️⃣ Looping Marquee
+    const el13=document.getElementById('marquee');
+    let running13=true;
+    let marqueeInstance;
+    function totalW13(){return el13.scrollWidth;}
+    function start13(){
+      el13.style.transform='translateX(0)';
+      marqueeInstance = anime({targets:el13,translateX:[0, -(el13.scrollWidth/3)],duration:8000,easing:'linear',loop:true});
+    }
+    start13();
+    document.getElementById('marqToggle').addEventListener('click',()=>{
+      running13=!running13;
+      if(running13){marqueeInstance.play();}else{marqueeInstance.pause();}
+    });
+
+    // 1️⃣4️⃣ 단어 단위 Stagger
+    const el14=document.getElementById('wordText');
+    const words14=el14.textContent.split(' ');
+    el14.textContent='';
+    words14.forEach(w=>{
+      const span=document.createElement('span');
+      span.textContent=w+' ';
+      span.className='word';
+      span.style.display='inline-block';
+      el14.appendChild(span);
+    });
+    function wordOnly(){
+      el14.querySelectorAll('.word').forEach(w=>{w.style.opacity='0'; w.style.transform='translateY(16px)';});
+      anime({targets:'.word',opacity:[0,1],translateY:[16,0],
+        easing:'easeOutExpo',duration:600,delay:anime.stagger(80)});
+    }
+    function cascade(){
+      const all=[];
+      el14.querySelectorAll('.word').forEach((w,i)=>{
+        const letters=w.textContent.trim().split('');
+        w.textContent='';
+        letters.forEach((l,j)=>{
+          const s=document.createElement('span');
+          s.textContent=l;
+          s.style.display='inline-block';
+          s.className='letter';
+          w.appendChild(s);
+          all.push({el:s,delay:i*120+j*12});
+        });
+      });
+      anime({targets:all.map(a=>a.el),
+        opacity:[0,1],translateY:[10,0],
+        duration:450,easing:'easeOutQuad',
+        delay:(t,i)=>all[i].delay});
+    }
+    wordOnly();
+    document.getElementById('wordPlay').addEventListener('click',wordOnly);
+    document.getElementById('wordCascade').addEventListener('click',cascade);
+
+    // 1️⃣5️⃣ 스크롤 시퀀스
+    const sec15=document.getElementById('sec15');
+    const t15=sec15.querySelector('#seqTitle');
+    const s15=sec15.querySelector('#seqSub');
+    const c15=sec15.querySelector('#seqCTA');
+    [t15,s15,c15].forEach(el=>{
+      el.style.opacity=0;el.style.transform='translateY(24px)';
+    });
+    const tl15=anime.timeline({autoplay:false,easing:'easeOutExpo'});
+    tl15.add({targets:t15,opacity:[0,1],translateY:[24,0],duration:600})
+      .add({targets:s15,opacity:[0,1],translateY:[24,0],duration:500},'-=200')
+      .add({targets:c15,opacity:[0,1],translateY:[24,0],duration:500},'-=150');
+    const io15=new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){tl15.play();io15.disconnect();}
+      });
+    },{threshold:.4});
+    io15.observe(sec15);
+
+    // 1️⃣6️⃣ SVG 텍스트 아웃라인 드로잉
+    const el16=document.getElementById('svgOutlineText');
+    function draw16(){
+      el16.style.strokeDasharray='2000';
+      el16.style.strokeDashoffset='2000';
+      anime({targets:el16,strokeDashoffset:[2000,0],duration:1200,easing:'easeInOutSine'});
+    }
+    draw16();
+    document.getElementById('svgTextReplay').addEventListener('click',draw16);
+});
+</script>
+
+<script>
+// === Ripple 및 코드 토글/복사 ===
+document.addEventListener('click',e=>{
+  const btn=e.target.closest('.ripple-btn');
+  if(!btn) return;
+  const r=document.createElement('span');
+  r.className='ripple';
+  const rect=btn.getBoundingClientRect();
+  r.style.left=(e.clientX-rect.left)+'px';
+  r.style.top=(e.clientY-rect.top)+'px';
+  btn.appendChild(r);
+  if(window.anime){
+    anime({targets:r,scale:[0,12],opacity:[0.7,0],duration:700,easing:'easeOutCubic',complete:()=>r.remove()});
+  } else {
+    r.remove();
+  }
+});
+
+document.addEventListener('click',e=>{
+  const t=e.target;
+  if(t.classList.contains('toggle')){
+    const box=t.closest('.codeBox');
+    const hide=box.querySelector('.hideCode');
+    hide.classList.toggle('open');
+  }
+  if(t.className.startsWith('copy')){
+    const box=t.closest('.codeBox');
+    const codeEls=box.querySelectorAll('pre code');
+    let text='';
+    if(t.classList.contains('copyCdn')) text=codeEls[0].innerText;
+    if(t.classList.contains('copyCss')) text=codeEls[1].innerText;
+    if(t.classList.contains('copyHtml')) text=codeEls[2].innerText;
+    if(t.classList.contains('copyJs')) text=codeEls[3].innerText;
+    navigator.clipboard.writeText(text.trim()).then(()=>alert('복사 완료 ✅'));
+  }
+});
+</script>
+
+
+</body>
+</html>
