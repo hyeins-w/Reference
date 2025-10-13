@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜딩에 사용할 애니메이션</title>
+    <style>
+        a{text-decoration: none;}
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{
+            max-width: 800px; margin: auto;
+            position: relative; overflow-x: hidden; font-size: 20px;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .outBox{position: relative;}
+
+        .loadBox{width: 100%; margin: auto; margin-top: 10%;}
+        .loadBox h2{margin-bottom: 3%;}
+
+        .codeText{width: 100%; margin: auto; margin-top: 4%;}
+        .buttonBox{display: flex; gap: 1em;}
+        .codeText button{
+            flex: 1;
+            background-color: #0071e2; color: white; text-align: center;
+            padding: 0.4em 0; border: none; font-size: 1em;
+            cursor: pointer; border-radius: 5px;
+        }
+        .hideCode{
+            width: 100%;
+            margin-top: 1.5em;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        .hideCode.open{ height: auto; }
+        pre {
+            background: #1e1e1e; color: #f8f8f2;
+            padding: 1em; border-radius: 6px;
+            overflow-x: auto; font-size: 0.9em;
+        }
+        pre code { font-family: 'Courier New', monospace; }
+
+
+        /* text */
+/* From Uiverse.io by kennyotsu */ 
+.card {
+  /* color used to softly clip top and bottom of the .words container */
+  --bg-color: #ffffff;
+  border: 1px solid black;
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 1.25rem;
+}
+.loader {
+  color: rgb(0, 0, 0);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 2em;
+  padding: 0.25em 0.25em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; gap: 0.5em;
+  border-radius: 8px;
+}
+
+.words {
+  overflow: hidden;
+  position: relative;
+}
+.words::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--bg-color) 10%,
+    transparent 30%,
+    transparent 70%,
+    var(--bg-color) 90%
+  );
+  z-index: 20;
+}
+
+.word {
+  display: block;
+  height: 100%;
+  color: #956afa;
+  animation: spin_4991 4s infinite;
+}
+
+@keyframes spin_4991 {
+  10% {
+    -webkit-transform: translateY(-102%);
+    transform: translateY(-102%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-202%);
+    transform: translateY(-202%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-302%);
+    transform: translateY(-302%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-402%);
+    transform: translateY(-402%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+
+
+/* event 2 */
+/* From Uiverse.io by neerajbaniwal */ 
+
+.textshine{
+    width: 100%; padding: 1em; background-color: #1e1e1e;
+}
+.btn-shine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
+/* loader3 */
+/* From Uiverse.io by mrhyddenn */ 
+.loader3 {
+  position: relative; width: 100%;
+  height: 3em; background-color: #1e1e1e;
+}
+
+.loader3>div{
+    position: relative; left: 50%; top: 50%; transform: translateY(-50%);
+}
+
+.loader3 span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+.loader3 span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader3 span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+/* radio event1 */
+/* From Uiverse.io by gharsh11032000 */ 
+.radio-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  transform: translateY(-50%) scale(0.9);
+  border: 5px solid #4c8bf5;
+  color: #4c8bf5;
+}
+
+.radio-button__input:checked + .radio-button__label {
+  color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: translateY(-50%) scale(1.2);
+  border-color: #4c8bf5;
+  box-shadow: 0 0 10px #4c8bf580;
+}
+
+
+/* radio event2 */
+/* From Uiverse.io by Pradeepsaranbishnoi (modified) */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.radio-tile-group .input-container {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  margin: 0.5rem;
+}
+
+.radio-tile-group .input-container .radio-button {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* 타일 */
+.radio-tile-group .input-container .radio-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #079ad9;
+  border-radius: 5px;
+  padding: 1rem;
+  transition: transform 300ms ease, background-color 300ms ease;
+}
+
+/* 단순 사각형 아이콘 */
+.radio-tile-group .input-container .icon {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #079ad9;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 300ms ease, border-color 300ms ease;
+  margin-bottom: 0.5rem;
+}
+
+/* 라벨 */
+.radio-tile-group .input-container .radio-tile-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #079ad9;
+}
+
+/* 체크 시 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile {
+  background-color: #079ad9;
+  border: 2px solid #079ad9;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* 체크 시 아이콘 색상 반전 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .icon {
+  background-color: white;
+  border-color: white;
+}
+
+/* 체크 시 라벨 색상 반전 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
+  color: white;
+}
+
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <!-- 이벤트 1 -->
+    <div class="loadBox">
+        <h2>텍스트 이벤트 1</h2>
+        <div class="outBox">
+            <!-- From Uiverse.io by kennyotsu --> 
+            <div class="card">
+                <div class="loader">
+                    <p>---에서 상담받고</p>
+                    <div class="words">
+                        <span class="word">예뻐지자</span>
+                        <span class="word">할인받자</span>
+                        <span class="word">에헤ㅔ</span>
+                        <span class="word">cards</span>
+                        <span class="word">buttons</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* From Uiverse.io by kennyotsu */ 
+.card {
+  /* color used to softly clip top and bottom of the .words container */
+  --bg-color: #ffffff;
+  border: 1px solid black;
+  background-color: var(--bg-color);
+  padding: 1rem 2rem;
+  border-radius: 1.25rem;
+}
+.loader {
+  color: rgb(0, 0, 0);
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1.5em;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 2em;
+  padding: 0.25em 0.25em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; gap: 0.5em;
+  border-radius: 8px;
+}
+
+.words {
+  overflow: hidden;
+  position: relative;
+}
+.words::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    var(--bg-color) 10%,
+    transparent 30%,
+    transparent 70%,
+    var(--bg-color) 90%
+  );
+  z-index: 20;
+}
+
+.word {
+  display: block;
+  height: 100%;
+  color: #956afa;
+  animation: spin_4991 4s infinite;
+}
+
+@keyframes spin_4991 {
+  10% {
+    -webkit-transform: translateY(-102%);
+    transform: translateY(-102%);
+  }
+
+  25% {
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+
+  35% {
+    -webkit-transform: translateY(-202%);
+    transform: translateY(-202%);
+  }
+
+  50% {
+    -webkit-transform: translateY(-200%);
+    transform: translateY(-200%);
+  }
+
+  60% {
+    -webkit-transform: translateY(-302%);
+    transform: translateY(-302%);
+  }
+
+  75% {
+    -webkit-transform: translateY(-300%);
+    transform: translateY(-300%);
+  }
+
+  85% {
+    -webkit-transform: translateY(-402%);
+    transform: translateY(-402%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-400%);
+    transform: translateY(-400%);
+  }
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+<!-- From Uiverse.io by kennyotsu --> 
+&lt;div class="card"&gt;
+        &lt;div class="loader"&gt;
+            &lt;p&gt;---에서 상담받고&lt;/p&gt;
+            &lt;div class="words"&gt;
+                &lt;span class="word"&gt;예뻐지자&lt;/span&gt;
+                &lt;span class="word"&gt;할인받자&lt;/span&gt;
+                &lt;span class="word"&gt;에헤ㅔ&lt;/span&gt;
+                &lt;span class="word"&gt;buttons&lt;/span&gt;
+                &lt;span class="word"&gt;cards&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 텍스트 이벤트 2 -->
+    <div class="loadBox">
+        <h2>텍스트 이벤트 2</h2>
+        <div class="outBox textshine">
+            <!-- From Uiverse.io by neerajbaniwal --> 
+            <a href="#" class="btn-shine">Get early access</a>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* From Uiverse.io by neerajbaniwal */ 
+.btn-shine {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 48px;
+  color: #fff;
+  background: linear-gradient(to right, #9f9f9f 0, #fff 10%, #868686 20%);
+  background-position: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 3s infinite linear;
+  animation-fill-mode: forwards;
+  -webkit-text-size-adjust: none;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-family: "Poppins", sans-serif;
+}
+@-moz-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-webkit-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@-o-keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+@keyframes shine {
+  0% {
+    background-position: 0;
+  }
+  60% {
+    background-position: 180px;
+  }
+  100% {
+    background-position: 180px;
+  }
+}
+
+                </code></pre>
+
+      <p>body</p>
+      <pre><code>
+        <!-- From Uiverse.io by neerajbaniwal --> 
+&lt;a href="#" class="btn-shine"&gt;Get early access&lt;/a&gt;
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+
+<!-- 텍스트 이벤트 3 -->
+    <div class="loadBox">
+        <h2>텍스트 이벤트 3</h2>
+        <div class="outBox">
+            <!-- From Uiverse.io by mrhyddenn --> 
+            <div class="loader3">
+                <div>
+                    <span>uiverse</span>
+                    <span>uiverse</span>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* From Uiverse.io by mrhyddenn */ 
+.loader3 {
+  position: relative; width: 100%;
+  height: 3em; background-color: #1e1e1e;
+}
+
+.loader3>div{
+    position: relative; left: 50%; top: 50%; transform: translateY(-50%);
+}
+
+.loader3 span {
+  position: absolute;
+  color: #fff;
+  transform: translate(-50%, -50%);
+  font-size: 38px;
+  letter-spacing: 5px;
+}
+
+.loader3 span:nth-child(1) {
+  color: transparent;
+  -webkit-text-stroke: 0.3px rgb(128, 198, 255);
+}
+
+.loader3 span:nth-child(2) {
+  color: rgb(128, 198, 255);
+  -webkit-text-stroke: 1px rgb(128, 198, 255);
+  animation: uiverse723 3s ease-in-out infinite;
+}
+
+@keyframes uiverse723 {
+  0%, 100% {
+    clip-path: polygon(0% 45%, 15% 44%, 32% 50%, 
+     54% 60%, 70% 61%, 84% 59%, 100% 52%, 100% 100%, 0% 100%);
+  }
+
+  50% {
+    clip-path: polygon(0% 60%, 16% 65%, 34% 66%, 
+     51% 62%, 67% 50%, 84% 45%, 100% 46%, 100% 100%, 0% 100%);
+  }
+}
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by mrhyddenn */ 
+&lt;div class="loader3"&gt;
+    &lt;div&gt;
+        &lt;span&gt;uiverse&lt;/span&gt;
+        &lt;span&gt;uiverse&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+<!-- 라디오버튼 이벤트 1 -->
+    <div class="loadBox">
+        <h2>라디오버튼 이벤트 1</h2>
+        <div class="outBox">
+<!-- From Uiverse.io by gharsh11032000 --> 
+<div class="radio-buttons-container">
+    <div class="radio-button">
+      <input name="radio-group" id="radio2" class="radio-button__input" type="radio">
+      <label for="radio2" class="radio-button__label">
+        <span class="radio-button__custom"></span>
+
+            Next
+      </label>
+    </div>
+    <div class="radio-button">
+      <input name="radio-group" id="radio1" class="radio-button__input" type="radio">
+      <label for="radio1" class="radio-button__label">
+        <span class="radio-button__custom"></span>
+
+        Svelte
+      </label>
+    </div>
+    <div class="radio-button">
+      <input name="radio-group" id="radio3" class="radio-button__input" type="radio">
+      <label for="radio3" class="radio-button__label">
+        <span class="radio-button__custom"></span>
+
+            Remix
+      </label>
+    </div>
+</div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* From Uiverse.io by gharsh11032000 */ 
+.radio-buttons-container {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.radio-button {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio-button__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-button__label {
+  display: inline-block;
+  padding-left: 30px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 16px;
+  color: #000;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.radio-button__input:checked + .radio-button__label .radio-button__custom {
+  transform: translateY(-50%) scale(0.9);
+  border: 5px solid #4c8bf5;
+  color: #4c8bf5;
+}
+
+.radio-button__input:checked + .radio-button__label {
+  color: #4c8bf5;
+}
+
+.radio-button__label:hover .radio-button__custom {
+  transform: translateY(-50%) scale(1.2);
+  border-color: #4c8bf5;
+  box-shadow: 0 0 10px #4c8bf580;
+}
+
+
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+&lt;!-- From Uiverse.io by gharsh11032000 --&gt; 
+&lt;div class=&quot;radio-buttons-container&quot;&gt;
+    &lt;div class=&quot;radio-button&quot;&gt;
+      &lt;input name=&quot;radio-group&quot; id=&quot;radio2&quot; class=&quot;radio-button__input&quot; type=&quot;radio&quot;&gt;
+      &lt;label for=&quot;radio2&quot; class=&quot;radio-button__label&quot;&gt;
+        &lt;span class=&quot;radio-button__custom&quot;&gt;&lt;/span&gt;
+            
+            Next
+      &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;radio-button&quot;&gt;
+      &lt;input name=&quot;radio-group&quot; id=&quot;radio1&quot; class=&quot;radio-button__input&quot; type=&quot;radio&quot;&gt;
+      &lt;label for=&quot;radio1&quot; class=&quot;radio-button__label&quot;&gt;
+        &lt;span class=&quot;radio-button__custom&quot;&gt;&lt;/span&gt;
+        
+        Svelte
+      &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;radio-button&quot;&gt;
+      &lt;input name=&quot;radio-group&quot; id=&quot;radio3&quot; class=&quot;radio-button__input&quot; type=&quot;radio&quot;&gt;
+      &lt;label for=&quot;radio3&quot; class=&quot;radio-button__label&quot;&gt;
+        &lt;span class=&quot;radio-button__custom&quot;&gt;&lt;/span&gt;
+            
+            Remix
+      &lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 라디오버튼 이벤트 1 -->
+    <div class="loadBox">
+        <h2>라디오버튼 이벤트 1</h2>
+        <div class="outBox">
+<!-- From Uiverse.io by Pradeepsaranbishnoi (modified) -->
+<div class="container">
+  <div class="radio-tile-group">
+    <div class="input-container">
+      <input id="walk" class="radio-button" type="radio" name="radio">
+      <div class="radio-tile">
+        <div class="icon walk-icon"></div>
+        <label for="walk" class="radio-tile-label">Walk</label>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input id="bike" class="radio-button" type="radio" name="radio">
+      <div class="radio-tile">
+        <div class="icon bike-icon"></div>
+        <label for="bike" class="radio-tile-label">Bike</label>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <input id="drive" class="radio-button" type="radio" name="radio">
+      <div class="radio-tile">
+        <div class="icon car-icon"></div>
+        <label for="drive" class="radio-tile-label">Drive</label>
+      </div>
+    </div>
+  </div>
+</div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* From Uiverse.io by Pradeepsaranbishnoi (modified) */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.radio-tile-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.radio-tile-group .input-container {
+  position: relative;
+  height: 80px;
+  width: 80px;
+  margin: 0.5rem;
+}
+
+.radio-tile-group .input-container .radio-button {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+/* 타일 */
+.radio-tile-group .input-container .radio-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #079ad9;
+  border-radius: 5px;
+  padding: 1rem;
+  transition: transform 300ms ease, background-color 300ms ease;
+}
+
+/* 단순 사각형 아이콘 */
+.radio-tile-group .input-container .icon {
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid #079ad9;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: background-color 300ms ease, border-color 300ms ease;
+  margin-bottom: 0.5rem;
+}
+
+/* 라벨 */
+.radio-tile-group .input-container .radio-tile-label {
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #079ad9;
+}
+
+/* 체크 시 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile {
+  background-color: #079ad9;
+  border: 2px solid #079ad9;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* 체크 시 아이콘 색상 반전 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .icon {
+  background-color: white;
+  border-color: white;
+}
+
+/* 체크 시 라벨 색상 반전 */
+.radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
+  color: white;
+}
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+&lt;!-- From Uiverse.io by Pradeepsaranbishnoi (modified) --&gt;
+&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;radio-tile-group&quot;&gt;
+    &lt;div class=&quot;input-container&quot;&gt;
+      &lt;input id=&quot;walk&quot; class=&quot;radio-button&quot; type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+      &lt;div class=&quot;radio-tile&quot;&gt;
+        &lt;div class=&quot;icon walk-icon&quot;&gt;&lt;/div&gt;
+        &lt;label for=&quot;walk&quot; class=&quot;radio-tile-label&quot;&gt;Walk&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;input-container&quot;&gt;
+      &lt;input id=&quot;bike&quot; class=&quot;radio-button&quot; type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+      &lt;div class=&quot;radio-tile&quot;&gt;
+        &lt;div class=&quot;icon bike-icon&quot;&gt;&lt;/div&gt;
+        &lt;label for=&quot;bike&quot; class=&quot;radio-tile-label&quot;&gt;Bike&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;input-container&quot;&gt;
+      &lt;input id=&quot;drive&quot; class=&quot;radio-button&quot; type=&quot;radio&quot; name=&quot;radio&quot;&gt;
+      &lt;div class=&quot;radio-tile&quot;&gt;
+        &lt;div class=&quot;icon car-icon&quot;&gt;&lt;/div&gt;
+        &lt;label for=&quot;drive&quot; class=&quot;radio-tile-label&quot;&gt;Drive&lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+            </div>
+        </div>
+    </div>
+    
+<script>
+// 모든 로딩 박스 반복
+document.querySelectorAll('.loadBox').forEach(box => {
+    const showBtn = box.querySelector('.showBtn');
+    const copyCssBtn = box.querySelector('.copyCssBtn');
+    const copyHtmlBtn = box.querySelector('.copyHtmlBtn');
+    const hideCode = box.querySelector('.hideCode');
+    const codes = box.querySelectorAll('pre code');
+
+    // 코드 보기 버튼
+    showBtn.addEventListener('click', () => {
+        hideCode.classList.toggle('open');
+        showBtn.textContent = hideCode.classList.contains('open') ? '코드 숨기기' : '코드 보기';
+    });
+
+    // CSS 복사
+    copyCssBtn.addEventListener('click', () => {
+        const cssCode = codes[0].innerText.trim();
+        navigator.clipboard.writeText(cssCode)
+            .then(() => alert('CSS 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    // HTML 복사
+    copyHtmlBtn.addEventListener('click', () => {
+        const htmlCode = codes[1].innerText.trim();
+        navigator.clipboard.writeText(htmlCode)
+            .then(() => alert('HTML 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+});
+</script>
+
+</body>
+</html>
