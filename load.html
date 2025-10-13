@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>로딩 이벤트 예제 모음</title>
+<style>
+a{text-decoration: none;}
+*{margin: 0; padding: 0; box-sizing: border-box;}
+body{
+  max-width: 800px; margin: auto;
+  position: relative; overflow-x: hidden; font-size: 20px;
+  font-family: 'Pretendard', sans-serif;
+}
+.loadBox{width: 100%; margin: auto; margin-top: 10%;}
+.loadBox h2{margin-bottom: 3%;}
+
+.codeText{width: 100%; margin: auto; margin-top: 4%;}
+.buttonBox{display: flex; gap: 1em;}
+.codeText button{
+  flex: 1;
+  background-color: #0071e2; color: white; text-align: center;
+  padding: 0.4em 0; border: none; font-size: 1em;
+  cursor: pointer; border-radius: 5px;
+}
+.hideCode{
+  width: 100%;
+  margin-top: 1.5em;
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s ease;
+}
+.hideCode.open{ height: auto; }
+pre {
+  background: #1e1e1e; color: #f8f8f2;
+  padding: 1em; border-radius: 6px;
+  overflow-x: auto; font-size: 0.9em;
+}
+pre code { font-family: 'Courier New', monospace; }
+
+
+/* load1 */
+.loader {
+  display: block;
+  --height-of-loader: 0.4em;
+  --loader-color: #0071e2;
+  width: 60%;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0,0,0,0.2);
+  position: relative;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0; left: 0;
+  width: 0%; height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+@keyframes moving {
+  50% { width: 100%; }
+  100% { width: 0; right: 0; left: unset; }
+}
+
+
+/* load2 */
+/* From Uiverse.io by Shoh2008 */ 
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #ffbbbb;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+/* load3 */
+/* From Uiverse.io by dovatgabriel */ 
+.leap-frog {
+ --uib-size: 40px;
+ --uib-speed: 2s;
+ --uib-color: rgb(37, 37, 149);
+ position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ width: var(--uib-size);
+ height: var(--uib-size);
+}
+
+.leap-frog__dot {
+ position: absolute;
+ top: 0;
+ left: 0;
+ display: flex;
+ align-items: center;
+ justify-content: flex-start;
+ width: 100%;
+ height: 100%;
+}
+
+.leap-frog__dot::before {
+ content: '';
+ display: block;
+ height: calc(var(--uib-size) * 0.22);
+ width: calc(var(--uib-size) * 0.22);
+ border-radius: 50%;
+ background-color: var(--uib-color);
+ will-change: transform;
+}
+
+.leap-frog__dot:nth-child(1) {
+ animation: leapFrog var(--uib-speed) ease infinite;
+}
+
+.leap-frog__dot:nth-child(2) {
+ transform: translateX(calc(var(--uib-size) * 0.4));
+ animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -1.5)
+    infinite;
+}
+
+.leap-frog__dot:nth-child(3) {
+ transform: translateX(calc(var(--uib-size) * 0.8)) rotate(0deg);
+ animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -3)
+    infinite;
+}
+
+@keyframes leapFrog {
+ 0% {
+  transform: translateX(0) rotate(0deg);
+ }
+
+ 33.333% {
+  transform: translateX(0) rotate(180deg);
+ }
+
+ 66.666% {
+  transform: translateX(calc(var(--uib-size) * -0.4)) rotate(180deg);
+ }
+
+ 99.999% {
+  transform: translateX(calc(var(--uib-size) * -0.8)) rotate(180deg);
+ }
+
+ 100% {
+  transform: translateX(0) rotate(0deg);
+ }
+}
+
+/* load4 */
+/* From Uiverse.io by Fadhilmagass */ 
+.loader2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  -webkit-animation: dot-pulse2 1.5s ease-in-out infinite;
+  animation: dot-pulse2 1.5s ease-in-out infinite;
+}
+
+.dot-1 {
+  background-color: #4285f4;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  background-color: #34a853;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.dot-3 {
+  background-color: #fbbc05;
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.dot-4 {
+  background-color: #ea4335;
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+
+.dot-5 {
+  background-color: #4285f4;
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+
+@keyframes dot-pulse2 {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+}
+
+/* load5 */
+/* From Uiverse.io by Satwinder04 */ 
+.loader3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: #333;
+  animation: circle1 1s ease-in-out infinite;
+}
+
+.circle1:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.circle1:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.circle1:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.circle1:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+@keyframes circle1 {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* load6 */
+/* From Uiverse.io by jack0237 */ 
+.loader4 {
+  display: flex;
+}
+
+.loader4 .dot4 {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #e8e8e8;
+  background: #16b0c1;
+  animation: jump 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes jump {
+  100% {
+    background: #661e92;
+    transform: translateZ(-3rem) scale(1.9);
+  }
+}
+
+.loader4 .dot4:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.loader4 .dot4:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader4 .dot4:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.loader4 .dot4:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.loader4 .dot4:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* load7 */
+/* From Uiverse.io by scissorsdog */ 
+.loader__balls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.loader__balls__group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  height: 100px;
+  width: 40px;
+}
+.ball {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  position: absolute;
+  transform-origin: bottom;
+}
+
+/* ANIMATION BALL 1*/
+.loader__balls__group :nth-child(1) {
+  background-color: #99e2d0;
+  animation-name: jumpinBallAnimation1;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation1 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* ANIMATION BALL 2*/
+.loader__balls__group :nth-child(2) {
+  background-color: #12e0ad;
+  animation-name: jumpinBallAnimation2;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation2 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0.5);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0.5);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* ANIMATION BALL 3*/
+.loader__balls__group :nth-child(3) {
+  background-color: #16c197;
+  animation-name: jumpinBallAnimation3;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation3 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 1);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 1);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+.loader__balls__group .item1 {
+  animation-delay: 0ms;
+}
+.loader__balls__group .item2 {
+  animation-delay: 100ms;
+}
+.loader__balls__group .item3 {
+  animation-delay: 200ms;
+}
+
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+<!-- 로딩 이벤트 1 -->
+<div class="loadBox">
+  <h2>로딩 이벤트 1</h2>
+  <div class="outBox"><div class="loader"></div></div>
+  <div class="codeText">
+    <div class="buttonBox">
+      <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+    </div>
+    <div class="hideCode">
+      <p>style</p>
+      <pre><code>
+/* From Uiverse.io by satyamchaudharydev */ 
+.loader {
+  display: block;
+  --height-of-loader: 0.4em;
+  --loader-color: #0071e2;
+  width: 60%;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0,0,0,0.2);
+  position: relative;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0; left: 0;
+  width: 0%; height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+@keyframes moving {
+  50% { width: 100%; }
+  100% { width: 0; right: 0; left: unset; }
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+/* From Uiverse.io by satyamchaudharydev */ 
+&lt;div class="loader"&gt;&lt;/div&gt;
+    </code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- 로딩 이벤트 2  -->
+<div class="loadBox">
+  <h2>로딩 이벤트 2</h2>
+  <div class="outBox">
+    <!-- From Uiverse.io by Shoh2008 --> 
+    <div class="lds-ellipsis"><div></div><div></div><div></div></div>
+  </div>
+  <div class="codeText">
+    <div class="buttonBox">
+      <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+    </div>
+    <div class="hideCode">
+      <p>style</p>
+      <pre><code>
+/* From Uiverse.io by Shoh2008 */ 
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+/* From Uiverse.io by Shoh2008 */ 
+&lt;div class="lds-ellipsis"&gt;
+&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;&lt;div&gt;&lt;/div&gt;
+&lt;/div&gt;
+        </code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- 로딩 이벤트 3 -->
+<div class="loadBox">
+    <h2>로딩 이벤트 3</h2>
+    <div class="outBox">
+        <div class="leap-frog">
+            <div class="leap-frog__dot"></div>
+            <div class="leap-frog__dot"></div>
+            <div class="leap-frog__dot"></div>
+        </div>
+    </div>
+    <div class="codeText">
+        <div class="buttonBox">
+            <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+        </div>
+        <div class="hideCode">
+            <p>style</p>
+            <pre><code>
+/* From Uiverse.io by dovatgabriel */ 
+.leap-frog {
+ --uib-size: 40px;
+ --uib-speed: 2s;
+ --uib-color: rgb(37, 37, 149);
+ position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ width: var(--uib-size);
+ height: var(--uib-size);
+}
+
+.leap-frog__dot {
+ position: absolute;
+ top: 0;
+ left: 0;
+ display: flex;
+ align-items: center;
+ justify-content: flex-start;
+ width: 100%;
+ height: 100%;
+}
+
+.leap-frog__dot::before {
+ content: '';
+ display: block;
+ height: calc(var(--uib-size) * 0.22);
+ width: calc(var(--uib-size) * 0.22);
+ border-radius: 50%;
+ background-color: var(--uib-color);
+ will-change: transform;
+}
+
+.leap-frog__dot:nth-child(1) {
+ animation: leapFrog var(--uib-speed) ease infinite;
+}
+
+.leap-frog__dot:nth-child(2) {
+ transform: translateX(calc(var(--uib-size) * 0.4));
+ animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -1.5)
+    infinite;
+}
+
+.leap-frog__dot:nth-child(3) {
+ transform: translateX(calc(var(--uib-size) * 0.8)) rotate(0deg);
+ animation: leapFrog var(--uib-speed) ease calc(var(--uib-speed) / -3)
+    infinite;
+}
+
+@keyframes leapFrog {
+ 0% {
+  transform: translateX(0) rotate(0deg);
+ }
+
+ 33.333% {
+  transform: translateX(0) rotate(180deg);
+ }
+
+ 66.666% {
+  transform: translateX(calc(var(--uib-size) * -0.4)) rotate(180deg);
+ }
+
+ 99.999% {
+  transform: translateX(calc(var(--uib-size) * -0.8)) rotate(180deg);
+ }
+
+ 100% {
+  transform: translateX(0) rotate(0deg);
+ }
+}
+
+            </code></pre>
+
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by dovatgabriel */ 
+&lt;div class="leap-frog"&gt;
+    &lt;div class="leap-frog__dot"&gt;&lt;/div&gt;
+    &lt;div class="leap-frog__dot"&gt;&lt;/div&gt;
+    &lt;div class="leap-frog__dot"&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+    </div>
+  </div>
+</div>
+
+<!-- 로딩 이벤트 4 -->
+<div class="loadBox">
+    <h2>로딩 이벤트 4</h2>
+    <div class="outBox">
+        <div class="loader2">
+            <div class="dot dot-1"></div>
+            <div class="dot dot-2"></div>
+            <div class="dot dot-3"></div>
+            <div class="dot dot-4"></div>
+            <div class="dot dot-5"></div>
+        </div>
+    </div>
+    <div class="codeText">
+        <div class="buttonBox">
+            <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+        </div>
+        <div class="hideCode">
+            <p>style</p>
+            <pre><code>
+/* From Uiverse.io by Fadhilmagass */ 
+.loader {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100%;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 6px;
+  border-radius: 50%;
+  -webkit-animation: dot-pulse2 1.5s ease-in-out infinite;
+  animation: dot-pulse2 1.5s ease-in-out infinite;
+}
+
+.dot-1 {
+  background-color: #4285f4;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+.dot-2 {
+  background-color: #34a853;
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.dot-3 {
+  background-color: #fbbc05;
+  -webkit-animation-delay: 0.6s;
+  animation-delay: 0.6s;
+}
+
+.dot-4 {
+  background-color: #ea4335;
+  -webkit-animation-delay: 0.9s;
+  animation-delay: 0.9s;
+}
+
+.dot-5 {
+  background-color: #4285f4;
+  -webkit-animation-delay: 1.2s;
+  animation-delay: 1.2s;
+}
+
+@keyframes dot-pulse2 {
+  0% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  50% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+}
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by Fadhilmagass */ 
+&lt;div class="loader"&gt;
+    &lt;div class="dot dot-1"&gt;&lt;/div&gt;
+    &lt;div class="dot dot-2"&gt;&lt;/div&gt;
+    &lt;div class="dot dot-3"&gt;&lt;/div&gt;
+    &lt;div class="dot dot-4"&gt;&lt;/div&gt;
+    &lt;div class="dot dot-5"&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<!-- 로딩 이벤트 5 -->
+<div class="loadBox">
+    <h2>로딩 이벤트 5</h2>
+    <div class="outBox">
+        <div class="loader3">
+            <div class="circle1"></div>
+            <div class="circle1"></div>
+            <div class="circle1"></div>
+            <div class="circle1"></div>
+            <div class="circle1"></div>
+        </div>
+    </div>
+    <div class="codeText">
+        <div class="buttonBox">
+            <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+        </div>
+        <div class="hideCode">
+            <p>style</p>
+            <pre><code>
+/* From Uiverse.io by Satwinder04 */ 
+.loader3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle1 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: #333;
+  animation: circle1 1s ease-in-out infinite;
+}
+
+.circle1:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.circle1:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.circle1:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+.circle1:nth-child(5) {
+  animation-delay: 0.8s;
+}
+
+@keyframes circle1 {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by Satwinder04 */ 
+&lt;div class="loader3"&gt;
+    &lt;div class="circle1"&gt;&lt;/div&gt;
+    &lt;div class="circle1"&gt;&lt;/div&gt;
+    &lt;div class="circle1"&gt;&lt;/div&gt;
+    &lt;div class="circle1"&gt;&lt;/div&gt;
+    &lt;div class="circle1"&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<!-- 로딩 이벤트 6 -->
+<div class="loadBox">
+    <h2>로딩 이벤트 6</h2>
+    <div class="outBox">
+        <div class="loader4">
+            <div class="dot4"></div>
+            <div class="dot4"></div>
+            <div class="dot4"></div>
+            <div class="dot4"></div>
+            <div class="dot4"></div>
+        </div>
+    </div>
+    <div class="codeText">
+        <div class="buttonBox">
+            <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+        </div>
+        <div class="hideCode">
+            <p>style</p>
+            <pre><code>
+/* From Uiverse.io by jack0237 */ 
+.loader {
+  display: flex;
+}
+
+.loader .dot {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 2px solid #e8e8e8;
+  background: #16b0c1;
+  animation: jump 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes jump {
+  100% {
+    background: #661e92;
+    transform: translateZ(-3rem) scale(1.9);
+  }
+}
+
+.loader .dot:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.loader .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loader .dot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.loader .dot:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.loader .dot:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by jack0237 */ 
+&lt;div class="loader"&gt;
+    &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;div class="dot"&gt;&lt;/div&gt;
+    &lt;div class="dot"&gt;&lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+<!-- 로딩 이벤트 7 -->
+<div class="loadBox">
+    <h2>로딩 이벤트 7</h2>
+    <div class="outBox">
+        <!-- From Uiverse.io by scissorsdog --> 
+        <div class="loader7">
+            <div class="loader__balls">
+                <div class="loader__balls__group">
+                    <div class="ball item1"></div>
+                    <div class="ball item1"></div>
+                    <div class="ball item1"></div>
+                </div>
+                <div class="loader__balls__group">
+                    <div class="ball item2"></div>
+                    <div class="ball item2"></div>
+                    <div class="ball item2"></div>
+                </div>
+                <div class="loader__balls__group">
+                    <div class="ball item3"></div>
+                    <div class="ball item3"></div>
+                    <div class="ball item3"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="codeText">
+        <div class="buttonBox">
+            <button class="showBtn">코드 보기</button>
+            <button class="copyCssBtn">CSS 복사</button>
+            <button class="copyHtmlBtn">HTML 복사</button>
+        </div>
+        <div class="hideCode">
+            <p>style</p>
+            <pre><code>
+/* From Uiverse.io by scissorsdog */ 
+.loader__balls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+.loader__balls__group {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+  height: 100px;
+  width: 40px;
+}
+.ball {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  position: absolute;
+  transform-origin: bottom;
+}
+
+/* ANIMATION BALL 1*/
+.loader__balls__group :nth-child(1) {
+  background-color: #99e2d0;
+  animation-name: jumpinBallAnimation1;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation1 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 0, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* ANIMATION BALL 2*/
+.loader__balls__group :nth-child(2) {
+  background-color: #12e0ad;
+  animation-name: jumpinBallAnimation2;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation2 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0.5);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 0.5);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+/* ANIMATION BALL 3*/
+.loader__balls__group :nth-child(3) {
+  background-color: #16c197;
+  animation-name: jumpinBallAnimation3;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+}
+@keyframes jumpinBallAnimation3 {
+  0% {
+    transform: translateY(0) scale(1, 1);
+  }
+  10% {
+    transform: translateY(0) scale(1.3, 0.8);
+  }
+  11% {
+    transform: translateY(0) scale(0.7, 1.2);
+    animation-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  39% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  }
+  40% {
+    transform: translateY(-75px) scale(1);
+  }
+  41% {
+    transform: translateY(-75px) scale(1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 1);
+  }
+  69% {
+    transform: translateY(0px) scale(1, 1);
+    animation-timing-function: cubic-bezier(1, 0, 1, 1);
+  }
+  70% {
+    transform: translateY(0) scale(1.5, 0.4);
+  }
+  80% {
+    transform: translateY(0) scale(0.8, 1.2);
+  }
+  90% {
+    transform: translateY(0) scale(1.1, 0.8);
+  }
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+.loader__balls__group .item1 {
+  animation-delay: 0ms;
+}
+.loader__balls__group .item2 {
+  animation-delay: 100ms;
+}
+.loader__balls__group .item3 {
+  animation-delay: 200ms;
+}
+
+
+
+            </code></pre>
+        
+            <p>body</p>
+            <pre><code>
+/* From Uiverse.io by scissorsdog */ 
+&lt;div class="loader"&gt;
+    &lt;div class="loader__balls"&gt;
+        &lt;div class="loader__balls__group"&gt;
+            &lt;div class="ball item1"&gt;&lt;/div&gt;
+            &lt;div class="ball item1"&gt;&lt;/div&gt;
+            &lt;div class="ball item1"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="loader__balls__group"&gt;
+            &lt;div class="ball item2"&gt;&lt;/div&gt;
+            &lt;div class="ball item2"&gt;&lt;/div&gt;
+            &lt;div class="ball item2"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="loader__balls__group"&gt;
+            &lt;div class="ball item3"&gt;&lt;/div&gt;
+            &lt;div class="ball item3"&gt;&lt;/div&gt;
+            &lt;div class="ball item3"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </code></pre>
+        </div>
+    </div>
+</div>
+
+
+<script>
+// 모든 로딩 박스 반복
+document.querySelectorAll('.loadBox').forEach(box => {
+    const showBtn = box.querySelector('.showBtn');
+    const copyCssBtn = box.querySelector('.copyCssBtn');
+    const copyHtmlBtn = box.querySelector('.copyHtmlBtn');
+    const hideCode = box.querySelector('.hideCode');
+    const codes = box.querySelectorAll('pre code');
+
+    // 코드 보기 버튼
+    showBtn.addEventListener('click', () => {
+        hideCode.classList.toggle('open');
+        showBtn.textContent = hideCode.classList.contains('open') ? '코드 숨기기' : '코드 보기';
+    });
+
+    // CSS 복사
+    copyCssBtn.addEventListener('click', () => {
+        const cssCode = codes[0].innerText.trim();
+        navigator.clipboard.writeText(cssCode)
+            .then(() => alert('CSS 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    // HTML 복사
+    copyHtmlBtn.addEventListener('click', () => {
+        const htmlCode = codes[1].innerText.trim();
+        navigator.clipboard.writeText(htmlCode)
+            .then(() => alert('HTML 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+});
+</script>
+</body>
+</html>
