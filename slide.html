@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>랜딩에 사용할 애니메이션</title>
+    <style>
+        a{text-decoration: none;}
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{
+            max-width: 800px; margin: auto;
+            position: relative; overflow-x: hidden; font-size: 20px;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .outBox{position: relative;}
+
+        .loadBox{width: 100%; margin: auto; margin-top: 10%;}
+        .loadBox h2{margin-bottom: 3%;}
+
+        .codeText{width: 100%; margin: auto; margin-top: 4%;}
+        .buttonBox{display: flex; gap: 1em;}
+        .codeText button{
+            flex: 1;
+            background-color: #0071e2; color: white; text-align: center;
+            padding: 0.4em 0; border: none; font-size: 1em;
+            cursor: pointer; border-radius: 5px;
+        }
+        .hideCode{
+            width: 100%;
+            margin-top: 1.5em;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        .hideCode.open{ height: auto; }
+        pre {
+            background: #1e1e1e; color: #f8f8f2;
+            padding: 1em; border-radius: 6px;
+            overflow-x: auto; font-size: 0.9em;
+        }
+        pre code { font-family: 'Courier New', monospace; }
+
+        .movPageBox{width: 90%; margin: auto; display: flex; justify-content: space-between; margin-top: 5%; }
+    .goLoad{
+      width: 18%; font-size: 0.9em; text-align: center; background-color: cadetblue; margin-bottom: 2%; padding: 0.5em 0; word-break: keep-all; display: flex; justify-content: center; align-items: center;
+    }
+    .goLoad a{color: white; width: 100%; height: 100%; }
+
+
+        /* 카드슬라이드 */
+        .card-slide{width: 100%; margin-top: 5%; margin-bottom: 10%;}
+        .card-slide swiper-container {
+          width: 100%;
+        }
+    
+        .card-slide swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 85%;
+          height: auto;
+        }
+    
+        .card-slide swiper-slide img {
+          display: block;
+          object-fit: contain;
+          width: 100%;
+        }
+
+
+        /* 슬라이드2 */
+        .loopslide1{
+            background-color: #ffffff;
+            width: 100%; overflow: hidden;
+        }
+
+        .loopslide1 .slider-wrapper {
+            width: 100%; position: relative;
+            overflow: hidden;
+        }
+
+        .loopslide1 .slider-track {
+            display: flex;
+            width: 100%; /* 전체 너비 사용 */
+            animation: scroll-left 33s linear infinite;
+        }
+
+        .loopslide1 .slide {
+            flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-252%); /* 슬라이드가 100% 이동하게 설정 */
+            }
+        }
+
+        .loopslide2{
+            background-color: #ffffff;
+            width: 100%; overflow: hidden;
+        }
+
+        .loopslide2 .slider-wrapper {
+            width: 100%; position: relative;
+            overflow: hidden;
+        }
+
+        .loopslide2 .slider-track {
+            display: flex;
+            width: 100%; /* 전체 너비 사용 */
+            animation: scroll-right 33s linear infinite;
+        }
+
+        .loopslide2 .slide {
+            flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-252%);
+            }
+            100% {
+                transform: translateX(0%); /* 슬라이드가 100% 이동하게 설정 */
+            }
+        }
+
+
+        /* slide4 */
+        .loopslide3{width: 100%; position: relative;}
+        .splide__slide img{width: 100%; object-fit: contain;}
+
+
+
+
+
+    </style>
+</head>
+<body>
+
+    <div class="movPageBox">
+      <div class="goLoad">
+        <a href="./index.html">되돌아가기</a>
+      </div>
+
+      <div class="goLoad">
+        <a href="./load.html">로딩 이벤트 보러가기</a>
+      </div>
+
+      <div class="goLoad">
+        <a href="./cssEvent.html">이벤트 보러가기</a>
+      </div>
+
+      <div class="goLoad">
+        <a href="./anime-js.html">anime.js 샘플보기</a>
+      </div>
+
+    </div>
+
+    <!-- 이벤트 1 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 1</h2>
+        <div class="outBox">
+            <div class="card-slide">
+                <swiper-container class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true"
+                    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+                    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true" loop="true" autoplay="true" autoplay-delay="2500" autoplay-disable-on-interaction="false">
+                    <swiper-slide>
+                      <img src="./img/card.webp" />
+                    </swiper-slide>
+                    <swiper-slide>
+                      <img src="./img/card.webp" />
+                    </swiper-slide>
+                    <swiper-slide>
+                      <img src="./img/card.webp" />
+                    </swiper-slide>
+                    <swiper-slide>
+                      <img src="./img/card.webp" />
+                    </swiper-slide>
+                </swiper-container>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+.card-slide{width: 100%; margin-top: 5%; margin-bottom: 10%;}
+.card-slide swiper-container {
+  width: 100%;
+}
+
+.card-slide swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 85%; background-color: #0071e2;
+  height: auto;
+}
+
+.card-slide swiper-slide img {
+  display: block; opacity: 0;
+  object-fit: contain;
+  width: 100%;
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div class="card-slide"&gt;
+  &lt;swiper-container class="mySwiper" pagination="false" effect="coverflow" grab-cursor="true" centered-slides="true"
+    slides-per-view="auto" coverflow-effect-rotate="50" coverflow-effect-stretch="0" coverflow-effect-depth="100"
+    coverflow-effect-modifier="1" coverflow-effect-slide-shadows="true" loop="true" autoplay="true" autoplay-delay="2500" autoplay-disable-on-interaction="false"&gt;
+      &lt;swiper-slide&gt;&lt;img src="https://land.withusmk.co.kr/assets/law/onsung/onsung03/ver1/sec3-ob.webp" &gt;&lt;/swiper-slide&gt;
+      &lt;swiper-slide&gt;&lt;img src="https://land.withusmk.co.kr/assets/law/onsung/onsung03/ver1/sec3-ob.webp" &gt;&lt;/swiper-slide&gt;
+      &lt;swiper-slide&gt;&lt;img src="https://land.withusmk.co.kr/assets/law/onsung/onsung03/ver1/sec3-ob.webp" &gt;&lt;/swiper-slide&gt;
+      &lt;swiper-slide&gt;&lt;img src="https://land.withusmk.co.kr/assets/law/onsung/onsung03/ver1/sec3-ob.webp" &gt;&lt;/swiper-slide&gt;
+      &lt;swiper-slide&gt;&lt;img src="https://land.withusmk.co.kr/assets/law/onsung/onsung03/ver1/sec3-ob.webp" &gt;&lt;/swiper-slide&gt;
+  &lt;/swiper-container&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+&lt;script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"&gt;&lt;/script&gt;
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 이벤트 2 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 2</h2>
+        <div class="outBox">
+            <div class="loopslide1">
+                <div class="slider-wrapper">
+                    <div class="slider-track">
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+.loopslide1{
+    background-color: #ffffff;
+    width: 100%; overflow: hidden;
+}
+.slider-wrapper {
+    width: 100%; position: relative;
+    overflow: hidden;
+}
+.slider-track {
+    display: flex;
+    width: 100%; /* 전체 너비 사용 */
+    animation: scroll-left 33s linear infinite;
+}
+.slide {
+    flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+}
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-252%); /* 슬라이드가 100% 이동하게 설정 */
+    }
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div class="loopslide1"&gt;
+  &lt;div class="slider-track"&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+&lt;script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"&gt;&lt;/script&gt;
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+        <!-- 이벤트 3 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 3</h2>
+        <div class="outBox">
+            <div class="loopslide2">
+                <div class="slider-wrapper">
+                    <div class="slider-track">
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                        <div class="slide">
+                            <img src="./img/card.webp" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+.loopslide2{
+    background-color: #ffffff;
+    width: 100%; overflow: hidden;
+}
+.slider-wrapper {
+    width: 100%; position: relative;
+    overflow: hidden;
+}
+.slider-track {
+    display: flex;
+    width: 100%; /* 전체 너비 사용 */
+    animation: scroll-right 33s linear infinite;
+}
+.slide {
+    flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+}
+@keyframes scroll-right {
+    0% {
+        transform: translateX(-252%);
+    }
+    100% {
+        transform: translateX(0%); /* 슬라이드가 100% 이동하게 설정 */
+    }
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div class="loopslide1"&gt;
+  &lt;div class="slider-track"&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+      &lt;div class="slide"&gt;&lt;img src="./img/card.webp" alt="" &gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+&lt;script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"&gt;&lt;/script&gt;
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+            <!-- 이벤트 3 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 4_ 이벤트2를 splide를 활용한 버전</h2>
+        <div class="outBox">
+            <div class="loopslide3">
+                <div class="splide splide1" aria-label="Splide AutoScroll Example">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <img src="./img/slide1.webp" alt="">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="./img/slide2.webp" alt="">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="./img/slide3.webp" alt="">
+                            </li>
+                            <li class="splide__slide">
+                                <img src="./img/slide4.webp" alt="">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+.loopslide3{width: 100%; position: relative;}
+.splide__slide img{width: 100%; object-fit: contain;}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div class="loopslide3"&gt;
+  &lt;div class="splide splide1" aria-label="Splide AutoScroll Example"&gt;
+      &lt;div class="splide__track"&gt;
+        &lt;ul class="splide__list"&gt;
+          &lt;li class="splide__slide"&gt; &lt;img src="./img/slide1.webp" alt=""&gt; &lt;/li&gt;
+          &lt;li class="splide__slide"&gt; &lt;img src="./img/slide2.webp" alt=""&gt; &lt;/li&gt;
+          &lt;li class="splide__slide"&gt; &lt;img src="./img/slide3.webp" alt=""&gt; &lt;/li&gt;
+          &lt;li class="splide__slide"&gt; &lt;img src="./img/slide4.webp" alt=""&gt; &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+<!-- Splide JS -->
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"&gt;&lt;/script&gt;
+<!-- AutoScroll Extension -->
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"&gt;&lt;/script&gt;
+
+new Splide('.splide1', {
+    type   : 'loop',
+    drag   : 'none',
+    focus  : 'center',
+    perPage: 3,
+    autoHeight: true,
+    autoScroll: { speed: 0.5 },
+    arrows: false,       // ⬅➡ 버튼 
+    pagination: false,   //점 네비
+    gap: '0.5em',
+}).mount( window.splide.Extensions );
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+    
+
+
+<!-- Splide JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <!-- AutoScroll Extension -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script>
+// 모든 로딩 박스 반복
+document.querySelectorAll('.loadBox').forEach(box => {
+    const showBtn = box.querySelector('.showBtn');
+    const copyCssBtn = box.querySelector('.copyCssBtn');
+    const copyHtmlBtn = box.querySelector('.copyHtmlBtn');
+    const copyJsBtn = box.querySelector('.copyJsBtn');
+    const hideCode = box.querySelector('.hideCode');
+    const codes = box.querySelectorAll('pre code');
+
+    // 코드 보기 버튼
+    showBtn.addEventListener('click', () => {
+        hideCode.classList.toggle('open');
+        showBtn.textContent = hideCode.classList.contains('open') ? '코드 숨기기' : '코드 보기';
+    });
+
+    // CSS 복사
+    copyCssBtn.addEventListener('click', () => {
+        const cssCode = codes[0].innerText.trim();
+        navigator.clipboard.writeText(cssCode)
+            .then(() => alert('CSS 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    // HTML 복사
+    copyHtmlBtn.addEventListener('click', () => {
+        const htmlCode = codes[1].innerText.trim();
+        navigator.clipboard.writeText(htmlCode)
+            .then(() => alert('HTML 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    //js 복사
+    copyJsBtn.addEventListener('click', () => {
+        const jsCode = codes[2]?.innerText.trim();
+        if(jsCode){
+            navigator.clipboard.writeText(jsCode)
+                .then(() => alert('JS 코드가 복사되었습니다!'))
+                .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+        } else {
+            alert('복사할 JS 코드가 없습니다.');
+        }
+    });
+
+    new Splide('.splide1', {
+        type   : 'loop',
+        drag   : 'none',
+        focus  : 'center',
+        perPage: 3,
+        autoHeight: true,
+        autoScroll: { speed: 0.5 },
+        arrows: false,       // ⬅➡ 버튼 
+        pagination: false,   //점 네비
+        gap: '0.5em',
+    }).mount( window.splide.Extensions );
+
+});
+</script>
+
+</body>
+</html>
