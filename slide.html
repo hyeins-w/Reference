@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <title>랜딩에 사용할 애니메이션</title>
     <style>
         a{text-decoration: none;}
@@ -132,6 +133,39 @@
         .loopslide3{width: 100%; position: relative;}
         .splide__slide img{width: 100%; object-fit: contain;}
 
+        /* slide5 */
+        .linkslide{display: flex; width: 100%; position: relative; overflow: hidden;}
+        .linkslide-slideL{
+            width: 58%; position: relative; margin-bottom: 5%; margin-left: 5%;
+        }
+        .splide2{position: relative; border: 1px solid #0094ee; border-radius: 1em; box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.226)}
+        .splide2 .splide__slide{ border-radius: 1em; overflow: hidden;}
+        /* 위치 */
+        /* 기본 dots 컨테이너 위치 */
+        .splide2 .splide__pagination {
+          bottom: -1.2em;   /* 위치 조정 */
+          right: -60%;
+        }
+        .splide2 .splide__pagination__page {
+            background: transparent;
+            border: 1px solid #3397cd;
+            width: 0.5em;
+            height: 0.5em;
+            margin: 0 5px;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .splide2 .splide__pagination__page.is-active {
+            background: #3397cd;  /* 활성 dot 색상 */
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        .linkslide-slideR{
+            position: absolute; z-index: -1;
+            left: 35%; width: 95%;
+        }
+        .splide3{margin-top: 5%;}
 
 
 
@@ -507,7 +541,7 @@
         </div>
     </div>
 
-            <!-- 이벤트 3 -->
+            <!-- 이벤트 4 -->
     <div class="loadBox">
         <h2>슬라이드 이벤트 4_ 이벤트2를 splide를 활용한 버전</h2>
         <div class="outBox">
@@ -542,7 +576,7 @@
             <div class="hideCode">
                 <p>style</p>
                 <pre><code>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"&gt;
 .loopslide3{width: 100%; position: relative;}
 .splide__slide img{width: 100%; object-fit: contain;}
       </code></pre>
@@ -583,6 +617,169 @@ new Splide('.splide1', {
 }).mount( window.splide.Extensions );
       </code></pre>
 
+            </div>
+        </div>
+    </div>
+
+            <!-- 이벤트 5 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 5</h2>
+        <div class="outBox">
+            <div class="linkslide">
+                <div class="linkslide-slideL">
+                    <div class="splide splide2" aria-label="Single Slide Carousel">
+                        <div class="splide__track" style="border-radius: 1em; overflow: hidden;">
+                            <ul class="splide__list">
+                                <li class="splide__slide" style="border-radius: 1em; overflow: hidden;"><img src="./img/slide1.webp" alt=""></li>
+                                <li class="splide__slide" style="border-radius: 1em; overflow: hidden;"><img src="./img/slide2.webp" alt=""></li>
+                                <li class="splide__slide" style="border-radius: 1em; overflow: hidden;"><img src="./img/slide3.webp" alt=""></li>
+                                <li class="splide__slide" style="border-radius: 1em; overflow: hidden;"><img src="./img/slide4.webp" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="linkslide-slideR">
+                    <div class="splide splide3" aria-label="Single Slide Carousel">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide"><img src="./img/slide1_1.webp" alt=""></li>
+                                <li class="splide__slide"><img src="./img/slide2_1.webp" alt=""></li>
+                                <li class="splide__slide"><img src="./img/slide3_1.webp" alt=""></li>
+                                <li class="splide__slide"><img src="./img/slide4_1.webp" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"&gt;
+.linkslide{display: flex; width: 100%; position: relative; overflow: hidden;}
+        .linkslide-slideL{
+            width: 58%; position: relative; margin-bottom: 5%; margin-left: 5%;
+        }
+        .splide2{position: relative; border: 1px solid #0094ee; border-radius: 1em; box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.226)}
+        .splide2 .splide__slide{ border-radius: 1em; overflow: hidden;}
+        /* 위치 */
+        /* 기본 dots 컨테이너 위치 */
+        .splide2 .splide__pagination {
+          bottom: -1.2em;   /* 위치 조정 */
+          right: -60%;
+        }
+        .splide2 .splide__pagination__page {
+            background: transparent;
+            border: 1px solid #3397cd;
+            width: 0.5em;
+            height: 0.5em;
+            margin: 0 5px;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .splide2 .splide__pagination__page.is-active {
+            background: #3397cd;  /* 활성 dot 색상 */
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        .linkslide-slideR{
+            position: absolute; z-index: -1;
+            left: 35%; width: 95%;
+        }
+        .splide3{margin-top: 5%;}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div class="linkslide"&gt;
+  &lt;div class="linkslide-slideL"&gt;
+      &lt;div class="splide splide2" aria-label="Single Slide Carousel"&gt;
+          &lt;div class="splide__track" style="border-radius: 1em; overflow: hidden;"&gt;
+            &lt;ul class="splide__list"&gt;
+              &lt;li class="splide__slide" style="border-radius: 1em; overflow: hidden;"&gt; &lt;img src="./img/slide1.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide" style="border-radius: 1em; overflow: hidden;"&gt; &lt;img src="./img/slide2.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide" style="border-radius: 1em; overflow: hidden;"&gt; &lt;img src="./img/slide3.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide" style="border-radius: 1em; overflow: hidden;"&gt; &lt;img src="./img/slide4.webp" alt=""&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="linkslide-slideR"&gt;
+      &lt;div class="splide splide3" aria-label="Single Slide Carousel"&gt;
+          &lt;div class="splide__track" style="border-radius: 1em; overflow: hidden;"&gt;
+            &lt;ul class="splide__list"&gt;
+              &lt;li class="splide__slide"&gt; &lt;img src="./img/slide1_1.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide"&gt; &lt;img src="./img/slide2_1.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide"&gt; &lt;img src="./img/slide3_1.webp" alt=""&gt; &lt;/li&gt;
+              &lt;li class="splide__slide"&gt; &lt;img src="./img/slide4_1.webp" alt=""&gt; &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+&lt;!-- Splide JS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"&gt;&lt;/script&gt;
+&lt;!-- AutoScroll Extension --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"&gt;&lt;/script&gt;
+
+const primarySlider = new Splide('.splide2', {
+        type : 'loop', 
+        perPage  : 1, 
+        perMove  : 1,
+        gap  : '0.5rem',
+        arrows : false, 
+        pagination: false, 
+        autoplay : true, 
+        interval : 3000,
+        pauseOnHover: false,
+            // ???? splide2 조작은 그대로 허용합니다.
+    }).mount(); 
+
+    // 3. secondarySlider (splide3 - 3개씩) 인스턴스 정의 및 마운트
+    const secondarySlider = new Splide('.splide3', {
+        type : 'loop',
+        perPage : 3,
+        perMove : 1,
+        gap : '0.5rem',
+        arrows: false, 
+        pagination: false, 
+        autoplay : false, 
+        interval : 3000,
+        pauseOnHover: false,
+        focus: 'center', 
+        trimSpace: false, 
+    }).mount();
+        
+    // 4. 이벤트 리스너를 사용하여 수동으로 동기화합니다.
+    // splide2가 이동할 때 (move 이벤트), splide3를 같은 인덱스로 이동시킵니다.
+    primarySlider.on('move', (newIndex) => {
+        // secondarySlider를 primarySlider의 현재 인덱스(newIndex)로 이동시킵니다.
+        // focus: 'center' 옵션 덕분에 newIndex가 splide3의 가운데로 오게 됩니다.
+        secondarySlider.go(newIndex);
+    });
+        
+    // 5. 추가 조치: 자동 재생의 시작도 맞춰줍니다.
+    primarySlider.on('autoplay:play', () => {
+        secondarySlider.play();
+    });
+    primarySlider.on('autoplay:pause', () => {
+        secondarySlider.pause();
+    });
+    // primarySlider의 마운트 이후 secondarySlider가 현재 인덱스를 따라가도록 초기 이동
+    secondarySlider.go(primarySlider.index);
+</code></pre>
             </div>
         </div>
     </div>
@@ -652,6 +849,53 @@ document.querySelectorAll('.loadBox').forEach(box => {
         pagination: false,   //점 네비
         gap: '0.5em',
     }).mount( window.splide.Extensions );
+
+    const primarySlider = new Splide('.splide2', {
+        type : 'loop', 
+        perPage  : 1, 
+        perMove  : 1,
+        gap  : '0.5rem',
+        arrows : false, 
+        pagination: false, 
+        autoplay : true, 
+        interval : 3000,
+        pauseOnHover: false,
+            // ???? splide2 조작은 그대로 허용합니다.
+    }).mount(); 
+
+    // 3. secondarySlider (splide3 - 3개씩) 인스턴스 정의 및 마운트
+    const secondarySlider = new Splide('.splide3', {
+        type : 'loop',
+        perPage : 3,
+        perMove : 1,
+        gap : '0.5rem',
+        arrows: false, 
+        pagination: false, 
+        autoplay : false, 
+        interval : 3000,
+        pauseOnHover: false,
+        focus: 'center', 
+        trimSpace: false, 
+    }).mount();
+        
+    // 4. 이벤트 리스너를 사용하여 수동으로 동기화합니다.
+    // splide2가 이동할 때 (move 이벤트), splide3를 같은 인덱스로 이동시킵니다.
+    primarySlider.on('move', (newIndex) => {
+        // secondarySlider를 primarySlider의 현재 인덱스(newIndex)로 이동시킵니다.
+        // focus: 'center' 옵션 덕분에 newIndex가 splide3의 가운데로 오게 됩니다.
+        secondarySlider.go(newIndex);
+    });
+        
+    // 5. 추가 조치: 자동 재생의 시작도 맞춰줍니다.
+    primarySlider.on('autoplay:play', () => {
+        secondarySlider.play();
+    });
+    primarySlider.on('autoplay:pause', () => {
+        secondarySlider.pause();
+    });
+    // primarySlider의 마운트 이후 secondarySlider가 현재 인덱스를 따라가도록 초기 이동
+    secondarySlider.go(primarySlider.index);
+
 
 });
 </script>
