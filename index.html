@@ -15,7 +15,7 @@
         h1{text-align: center; margin: 0.5em 0;}
         label { display: block; margin: 5px 0; }
         
-        .option-select{width: 90%; margin: auto; padding: 1em; border: 1px solid black; margin-bottom: 1em;}
+        .option-select{width: 90%; margin: auto; padding: 1em; border: 1px solid black; margin-bottom: 1em; position: relative;}
         .option-select label{font-size: 1.2em; margin-bottom: 0.5em;}
         .option-select button{margin: 0.5em; margin-left: 0;}
         .option-select input[type=text], .option-select input[type=number]{font-size: 1em; padding: 0.3em 0.5em; border: none; border-bottom: 1px solid black; width: 60%;}
@@ -37,7 +37,7 @@
         #result{width: 100%; min-height: 200px; background-color: white; padding: 1em; border: 1px solid black; white-space: pre-wrap; font-family: monospace; font-size: 14px;}
         button{background-color: white; font-size: 1.2em; padding: 0.1em 0.5em; border-radius: 0.1em; cursor: pointer;}
         #generate{border: 1px solid darkcyan; color: darkcyan;}
-        #previewBtn{border: 1px solid orange; color: orange;} /* 미리보기 버튼 스타일 */
+        #previewBtn{border: 1px solid orange; color: orange; position: relative;} /* 미리보기 버튼 스타일 */
         .btnBox .active { background-color: darkcyan; color: white; border-color: darkcyan; }
 
         .movPageBox{width: 90%; margin: auto; display: flex; justify-content: space-between; margin-top: 5%; }
@@ -61,11 +61,13 @@
             margin-bottom: 10px; 
             font-size: 1.5em; 
         }
+        #form-preview-target{position: relative;}
         /* 미리보기 폼에만 적용될 CSS를 위해 .formsBox 스타일을 오버라이드 */
         #form-preview-target .formsBox { 
             /* generatedCSS의 .formsBox 스타일을 그대로 유지합니다 */
             width: 100%; 
             margin: 0; 
+            position: relative;
             padding: 1.5em; 
             border: 1px solid #ddd;
             border-radius: 8px;
