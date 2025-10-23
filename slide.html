@@ -168,6 +168,49 @@
         .splide3{margin-top: 5%;}
 
 
+        /* slide6 */
+        /* 세로 카드 규격 (213x284 ≈ 3:4) */
+        #promo .splide { width: 100%; }
+
+        #promo .splide__slide{
+          width: clamp(6.5em, 24vw, 9em);  /* 소형~중형에서 자연스러운 폭 */
+          display:flex; justify-content:center; align-items:center;
+        }
+
+        /* 스케일은 card에만! (li는 그대로) */
+        .card6{
+          width: 100%;
+          aspect-ratio: 3 / 4;        /* 세로형 비율 유지 */
+          border-radius: 0.75em;
+          box-shadow: 0 0.833em 1.667em rgba(0,0,0,.35);
+          position: relative;
+          overflow: hidden;
+          transform-origin: 50% 60%;  /* 살짝 아래 중심 감성 */
+          transform: scale(.88) translateY(0.333em);
+          filter: blur(0.042em) brightness(.6);
+          opacity: .7;
+          will-change: transform, filter, opacity;
+          transition: transform .12s linear, filter .12s linear, opacity .12s linear;
+          margin-bottom: 1em;
+        }
+
+        /* 이미지 세로 맞춤 */
+        .card6 > img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;        /* 카드 안에서 전체 보이게 */
+          display: block;
+        }
+
+        /* 도트 */
+        #promo .splide__pagination{ bottom:-0.333em; gap:0.417em; }
+        #promo .splide__pagination__page{ width:0.333em;transform:scale(0.8); height:0.333em; background:#345163; opacity:0.3; }
+        #promo .splide__pagination__page.is-active{ transform:scale(0.95); background:#29b8ff; opacity:1; }
+
+        /* 화살표 숨김 */
+        #promo  .splide__arrows{ display:none; }
+
+
 
 
     </style>
@@ -784,14 +827,158 @@ const primarySlider = new Splide('.splide2', {
         </div>
     </div>
 
-    
+    <!-- 이벤트 6 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 6</h2>
+        <div class="outBox">
+            <div id="promo" class="splide" aria-label="슬라이드">
+                <div class="splide__track">
+                    <ul class="splide__list">
+                        <li class="splide__slide">
+                            <div class="card6">
+                            <img src="./img/slide1_1.webp" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="card6">
+                            <img src="./img/slide2_1.webp" alt="">
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div class="card6">
+                            <img src="./img/slide3_1.webp" alt="">
+                            </div>
+                        </li>
+                    
+                        <li class="splide__slide">
+                            <div class="card6">
+                            <img src="./img/slide4_1.webp" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+/* 세로 카드 규격 (213x284 ≈ 3:4) */
+#promo .splide { width: 100%; }
+
+#promo .splide__slide{
+    width: clamp(6.5em, 24vw, 9em);  /* 소형~중형에서 자연스러운 폭 */
+    display:flex; justify-content:center; align-items:center;
+}
+
+/* 스케일은 card에만! (li는 그대로) */
+.card6{
+    width: 100%;
+    aspect-ratio: 3 / 4;        /* 세로형 비율 유지 */
+    border-radius: 0.75em;
+    box-shadow: 0 0.833em 1.667em rgba(0,0,0,.35);
+    position: relative;
+    overflow: hidden;
+    transform-origin: 50% 60%;  /* 살짝 아래 중심 감성 */
+    transform: scale(.88) translateY(0.333em);
+    filter: blur(0.042em) brightness(.6);
+    opacity: .7;
+    will-change: transform, filter, opacity;
+    transition: transform .12s linear, filter .12s linear, opacity .12s linear;
+    margin-bottom: 1em;
+}
+
+/* 이미지 세로 맞춤 */
+.card6 > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* 카드 안에서 전체 보이게 */
+    display: block;
+}
+
+/* 도트 */
+#promo .splide__pagination{ bottom:-0.333em; gap:0.417em; }
+#promo .splide__pagination__page{ width:0.333em; height:0.333em; background:#345163; opacity:0.3; }
+#promo .splide__pagination__page.is-active{ transform:scale(1.6); background:#29b8ff; opacity:1; }
+/* 화살표 숨김 */
+#promo  .splide__arrows{ display:none; }
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+&lt;div id="promo" class="splide" aria-label="슬라이드"&gt;
+    &lt;div class="splide__track"&gt;
+        &lt;ul class="splide__list"&gt;
+            &lt;li class="splide__slide"&gt;&lt;div class="card6"&gt;&lt;img src="./img/slide1_1.webp" alt="" &gt;&lt;/div&gt;&lt;li&gt;
+            &lt;li class="splide__slide"&gt;&lt;div class="card6"&gt;&lt;img src="./img/slide2_1.webp" alt="" &gt;&lt;/div&gt;&lt;li&gt;
+            &lt;li class="splide__slide"&gt;&lt;div class="card6"&gt;&lt;img src="./img/slide3_1.webp" alt="" &gt;&lt;/div&gt;&lt;li&gt;
+            &lt;li class="splide__slide"&gt;&lt;div class="card6"&gt;&lt;img src="./img/slide4_1.webp" alt="" &gt;&lt;/div&gt;&lt;li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+&lt;!-- Splide JS --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"&gt;&lt;/script&gt;
+&lt;!-- AutoScroll Extension --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"&gt;&lt;/script&gt;
+
+const splide6 = new Splide('#promo', {
+    type: 'loop',
+    focus: 'center',
+    perPage: 3,
+    gap: '1em',                 // 24px -> 1em
+    pagination: false,
+    arrows: false,
+    drag: false,
+    snap: false,
+    speed: 700,
+    autoplay: true,
+    interval: 2600,
+    pauseOnHover: false,
+}).mount();
+const root   = splide6.root;
+const track6  = root.querySelector('.splide__track');
+const slides6 = root.querySelectorAll('.splide__slide');
+function updateScales(){
+    const rect6    = track6.getBoundingClientRect();
+    const centerX = rect6.left + rect6.width / 2;
+    const maxDist = rect6.width / 2;
+    slides6.forEach((li) => {
+        const card = li.querySelector('.card6');
+        const r = li.getBoundingClientRect();
+        const slideCenter = r.left + r.width / 2;
+        const dist  = Math.abs(centerX - slideCenter);
+        const t = Math.max(0, 1 - dist / maxDist); // 0~1
+        // 스케일: 0.88 ~ 1.06
+        const scale = 0.68 + t * (1.2 - 0.88);
+        const blurPx = (1 - t) * 1;    // 1px ~ 0px
+        const bright = 0.6 + t * 0.4;  // 0.6 ~ 1.0
+        const opacity = 0.7 + t * 0.3; // 0.7 ~ 1.0
+        card.style.transform = `scale(${scale}) translateY(0.333em)`;
+        card.style.filter    = `blur(${blurPx}px) brightness(${bright})`;
+        card.style.opacity   = opacity;
+    });
+    requestAnimationFrame(updateScales);
+}
+requestAnimationFrame(updateScales);
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
 
 
-<!-- Splide JS -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <!-- AutoScroll Extension -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 <script>
@@ -895,6 +1082,50 @@ document.querySelectorAll('.loadBox').forEach(box => {
     });
     // primarySlider의 마운트 이후 secondarySlider가 현재 인덱스를 따라가도록 초기 이동
     secondarySlider.go(primarySlider.index);
+
+
+
+    const splide6 = new Splide('#promo', {
+        type: 'loop',
+        focus: 'center',
+        perPage: 3,
+        gap: '1em',                 // 24px -> 1em
+        pagination: false,
+        arrows: false,
+        drag: false,
+        snap: false,
+        speed: 700,
+        autoplay: true,
+        interval: 2600,
+        pauseOnHover: false,
+    }).mount();
+
+    const root   = splide6.root;
+    const track6  = root.querySelector('.splide__track');
+    const slides6 = root.querySelectorAll('.splide__slide');
+
+    function updateScales(){
+        const rect6    = track6.getBoundingClientRect();
+        const centerX = rect6.left + rect6.width / 2;
+        const maxDist = rect6.width / 2;
+        slides6.forEach((li) => {
+            const card = li.querySelector('.card6');
+            const r = li.getBoundingClientRect();
+            const slideCenter = r.left + r.width / 2;
+            const dist  = Math.abs(centerX - slideCenter);
+            const t = Math.max(0, 1 - dist / maxDist); // 0~1
+            // 스케일: 0.88 ~ 1.06
+            const scale = 0.68 + t * (1.2 - 0.88);
+            const blurPx = (1 - t) * 1;    // 1px ~ 0px
+            const bright = 0.6 + t * 0.4;  // 0.6 ~ 1.0
+            const opacity = 0.7 + t * 0.3; // 0.7 ~ 1.0
+            card.style.transform = `scale(${scale}) translateY(0.333em)`;
+            card.style.filter    = `blur(${blurPx}px) brightness(${bright})`;
+            card.style.opacity   = opacity;
+        });
+        requestAnimationFrame(updateScales);
+    }
+    requestAnimationFrame(updateScales);
 
 
 });
