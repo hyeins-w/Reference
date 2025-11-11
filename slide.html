@@ -210,6 +210,58 @@
         /* 화살표 숨김 */
         #promo  .splide__arrows{ display:none; }
 
+        .movBox{width: 95%;; margin: auto; margin-top: 5%; position: relative;}
+.listBox{
+    width: 100%; height: 70vh; overflow: hidden;
+    position: relative;  color: black; padding: 0 2.5%;
+    display: flex; justify-content: left;
+}
+.ticker {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.ticker-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* CSS 애니메이션 적용 */
+    animation: scroll-up 20s linear infinite; 
+    /* 애니메이션 일시 정지 방지 (선택 사항) */
+    white-space: nowrap; 
+    will-change: transform; /* 성능 최적화 */
+}
+/* 무한 스크롤을 위한 핵심 애니메이션 정의 */
+@keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* 목록의 절반 높이만큼 이동 (JS에서 목록을 두 배로 복사할 것임) */
+        transform: translateY(-50%); 
+    }
+}
+.ticker-list li {
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 4%; box-shadow: 0 0.3em 0.3em rgba(0, 0, 0, 0.096);
+    border-radius: 0.5em;
+    position: relative;
+    height: 3.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ticker-list li div:nth-child(1){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(2){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(3){
+    width: calc(100% / 3); text-align: center;
+}
+
 
 
 
@@ -977,6 +1029,188 @@ requestAnimationFrame(updateScales);
     </div>
 
 
+        <!-- 이벤트 7 -->
+    <div class="loadBox">
+        <h2>슬라이드 이벤트 7</h2>
+        <div class="outBox">
+            <div class="movBox">
+                <div class="listBox">
+                    <div class="ticker">
+                        <ul class="ticker-list">
+                            <li>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="codeText">
+            <div class="buttonBox">
+                <button class="showBtn">코드 보기</button>
+                <button class="copyCssBtn">CSS 복사</button>
+                <button class="copyHtmlBtn">HTML 복사</button>
+                <button class="copyJsBtn">JS 복사</button>
+            </div>
+            <div class="hideCode">
+                <p>style</p>
+                <pre><code>
+.movBox{width: 95%;; margin: auto; margin-top: 5%; position: relative;}
+.listBox{
+    width: 100%; height: 70vh; overflow: hidden;
+    position: relative;  color: black; padding: 0 2.5%;
+    display: flex; justify-content: left;
+}
+.ticker {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.ticker-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* CSS 애니메이션 적용 */
+    animation: scroll-up 20s linear infinite; 
+    /* 애니메이션 일시 정지 방지 (선택 사항) */
+    white-space: nowrap; 
+    will-change: transform; /* 성능 최적화 */
+}
+/* 무한 스크롤을 위한 핵심 애니메이션 정의 */
+@keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* 목록의 절반 높이만큼 이동 (JS에서 목록을 두 배로 복사할 것임) */
+        transform: translateY(-50%); 
+    }
+}
+.ticker-list li {
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 4%; box-shadow: 0 0.3em 0.3em rgba(0, 0, 0, 0.096);
+    border-radius: 0.5em;
+    position: relative;
+    height: 3.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ticker-list li div:nth-child(1){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(2){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(3){
+    width: calc(100% / 3); text-align: center;
+}
+      </code></pre>
+
+      <p>body</p>
+      <pre><code>
+
+&lt;div class="movBox"&gt;
+    &lt;div class="listBox"&gt;
+        &lt;div class="ticker"&gt;
+            &lt;ul class="ticker-list"&gt;
+                &lt;li&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                    &lt;div&gt;&lt;/div&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+                </code></pre>
+
+      <p>js</p>
+      <pre><code>
+const regionMap = {
+    // ... (지역 데이터는 그대로 유지) ...
+    '서울특별시': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
+    '부산광역시': ['강서구', '금정구', '기장군', '남구', '동구', '동래구', '부산진구', '북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구'],
+    '인천광역시': ['강화군', '계양구', '남동구', '동구', '미추홀구', '부평구', '서구', '연수구', '옹진군', '중구'],
+    '대구광역시': ['남구', '달서구', '달성군', '동구', '북구', '서구', '수성구', '중구'],
+    '광주광역시': ['광산구', '남구', '동구', '북구', '서구'],
+    '대전광역시': ['대덕구', '동구', '서구', '유성구', '중구'],
+    '울산광역시': ['남구', '동구', '북구', '울주군', '중구'],
+    '세종특별자치시': ['세종시'],
+    '경기도': ['가평군', '고양시', '과천시', '광명시', '광주시', '구리시', '군포시', '김포시', '남양주시', '동두천시', '부천시', '성남시', '수원시', '시흥시', '안산시', '안성시', '안양시', '양주시', '양평군', '여주시', '연천군', '오산시', '용인시', '의왕시', '의정부시', '이천시', '파주시', '평택시', '포천시', '하남시', '화성시'],
+    '강원도': ['강릉시', '고성군', '동해시', '삼척시', '속초시', '양구군', '양양군', '영월군', '원주시', '인제군', '정선군', '철원군', '춘천시', '태백시', '평창군', '홍천군', '화천군', '횡성군'],
+    '충청북도': ['괴산군', '단양군', '보은군', '영동군', '옥천군', '음성군', '제천시', '진천군', '청주시', '충주시'],
+    '충청남도': ['계룡시', '공주시', '금산군', '논산시', '당진시', '보령시', '부여군', '서산시', '서천군', '아산시', '예산군', '천안시', '청양군', '태안군', '홍성군'],
+    '경상북도': ['경산시', '경주시', '고령군', '구미시', '군위군', '김천시', '문경시', '봉화군', '상주시', '성주군', '안동시', '영덕군', '영양군', '영주시', '영천시', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '포항시'],
+    '경상남도': ['거제시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군', '양산시', '의령군', '진주시', '창녕군', '창원시', '통영시', '하동군', '함안군', '함양군', '합천군'],
+    '전라북도': ['고창군', '군산시', '김제시', '남원시', '무주군', '부안군', '순창군', '완주군', '익산시', '임실군', '장수군', '전주시', '정읍시', '진안군'],
+    '전라남도': ['강진군', '고흥군', '곡성군', '광양시', '구례군', '나주시', '담양군', '목포시', '무안군', '보성군', '순천시', '신안군', '여수시', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군'],
+    '제주특별자치도': ['서귀포시', '제주시']
+};
+// 티커 데이터
+const names = ['김*수', '박*현', '이*연', '최*우', '한*리', '정*석', '윤*빈', '오*우', '송*철', '강*경',
+            '배*진', '신*호', '조*연', '서*우', '임*선', '문*아', '남*혁', '홍*지', '권*림', '노*찬',
+            '장*혁', '유*은', '하*리', '백*성', '곽*진', '안*별', '심*윤', '전*현', '류*재', '도*빈'];
+
+// 날짜 포맷 함수
+function getFormattedDate() {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더함
+    const day = today.getDate();
+    // YYYY-MM-DD 형식으로 반환 (padStart를 이용해 두 자리로 맞춤)
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
+// 랜덤 주소 생성 함수
+function getRandomAddress() {
+    const provinces = Object.keys(regionMap);
+    const randomProv = provinces[Math.floor(Math.random() * provinces.length)];
+    const cities = regionMap[randomProv];
+    const randomCity = cities[Math.floor(Math.random() * cities.length)];
+    const shortProv = randomProv.replace(/특별시|광역시|도|자치시|자치도/g, '').substring(0, 2);
+    return `${shortProv} ${randomCity}`;
+}
+
+// 새로운 목록 생성 및 적용 함수
+function generateTickerList(count = 10) { // 고유 항목 10개 생성
+    const listEl = document.querySelector('.ticker-list');
+    listEl.innerHTML = ''; 
+    const formattedDate = getFormattedDate();
+    let uniqueListContent = ''; // 고유한 목록 내용을 임시로 저장
+    for (let i = 0; i < count; i++) {
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomAddress = getRandomAddress();
+        uniqueListContent += `
+            <li>
+                <div>${formattedDate}</div>    
+                <div>${randomName}</div>       
+                <div>${randomAddress}</div>    
+            </li>
+        `;
+    }
+    // 1. 고유 목록을 추가
+    listEl.innerHTML = uniqueListContent;
+    // 2. CSS 애니메이션을 위해 고유 목록을 한 번 더 복사하여 추가
+    // 이를 통해 스크롤이 끝났을 때 끊김 없이 시작으로 돌아가는 것처럼 보이게 됩니다.
+    listEl.innerHTML += uniqueListContent; 
+}
+
+// 1. 목록 생성 및 적용
+generateTickerList();
+
+
+      </code></pre>
+
+            </div>
+        </div>
+    </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
 
@@ -1126,6 +1360,86 @@ document.querySelectorAll('.loadBox').forEach(box => {
         requestAnimationFrame(updateScales);
     }
     requestAnimationFrame(updateScales);
+
+        
+
+    const regionMap = {
+                // ... (지역 데이터는 그대로 유지) ...
+                '서울특별시': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
+                '부산광역시': ['강서구', '금정구', '기장군', '남구', '동구', '동래구', '부산진구', '북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구'],
+                '인천광역시': ['강화군', '계양구', '남동구', '동구', '미추홀구', '부평구', '서구', '연수구', '옹진군', '중구'],
+                '대구광역시': ['남구', '달서구', '달성군', '동구', '북구', '서구', '수성구', '중구'],
+                '광주광역시': ['광산구', '남구', '동구', '북구', '서구'],
+                '대전광역시': ['대덕구', '동구', '서구', '유성구', '중구'],
+                '울산광역시': ['남구', '동구', '북구', '울주군', '중구'],
+                '세종특별자치시': ['세종시'],
+                '경기도': ['가평군', '고양시', '과천시', '광명시', '광주시', '구리시', '군포시', '김포시', '남양주시', '동두천시', '부천시', '성남시', '수원시', '시흥시', '안산시', '안성시', '안양시', '양주시', '양평군', '여주시', '연천군', '오산시', '용인시', '의왕시', '의정부시', '이천시', '파주시', '평택시', '포천시', '하남시', '화성시'],
+                '강원도': ['강릉시', '고성군', '동해시', '삼척시', '속초시', '양구군', '양양군', '영월군', '원주시', '인제군', '정선군', '철원군', '춘천시', '태백시', '평창군', '홍천군', '화천군', '횡성군'],
+                '충청북도': ['괴산군', '단양군', '보은군', '영동군', '옥천군', '음성군', '제천시', '진천군', '청주시', '충주시'],
+                '충청남도': ['계룡시', '공주시', '금산군', '논산시', '당진시', '보령시', '부여군', '서산시', '서천군', '아산시', '예산군', '천안시', '청양군', '태안군', '홍성군'],
+                '경상북도': ['경산시', '경주시', '고령군', '구미시', '군위군', '김천시', '문경시', '봉화군', '상주시', '성주군', '안동시', '영덕군', '영양군', '영주시', '영천시', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '포항시'],
+                '경상남도': ['거제시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군', '양산시', '의령군', '진주시', '창녕군', '창원시', '통영시', '하동군', '함안군', '함양군', '합천군'],
+                '전라북도': ['고창군', '군산시', '김제시', '남원시', '무주군', '부안군', '순창군', '완주군', '익산시', '임실군', '장수군', '전주시', '정읍시', '진안군'],
+                '전라남도': ['강진군', '고흥군', '곡성군', '광양시', '구례군', '나주시', '담양군', '목포시', '무안군', '보성군', '순천시', '신안군', '여수시', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군'],
+                '제주특별자치도': ['서귀포시', '제주시']
+            };
+        
+    // 티커 데이터
+    const names = ['김*수', '박*현', '이*연', '최*우', '한*리', '정*석', '윤*빈', '오*우', '송*철', '강*경',
+                '배*진', '신*호', '조*연', '서*우', '임*선', '문*아', '남*혁', '홍*지', '권*림', '노*찬',
+                '장*혁', '유*은', '하*리', '백*성', '곽*진', '안*별', '심*윤', '전*현', '류*재', '도*빈'];
+
+    // 날짜 포맷 함수
+    function getFormattedDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더함
+        const day = today.getDate();
+        // YYYY-MM-DD 형식으로 반환 (padStart를 이용해 두 자리로 맞춤)
+        return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    }
+
+    // 랜덤 주소 생성 함수
+    function getRandomAddress() {
+        const provinces = Object.keys(regionMap);
+        const randomProv = provinces[Math.floor(Math.random() * provinces.length)];
+        const cities = regionMap[randomProv];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+
+        const shortProv = randomProv.replace(/특별시|광역시|도|자치시|자치도/g, '').substring(0, 2);
+        return `${shortProv} ${randomCity}`;
+    }
+
+    // 새로운 목록 생성 및 적용 함수
+    function generateTickerList(count = 10) { // 고유 항목 10개 생성
+        const listEl = document.querySelector('.ticker-list');
+        listEl.innerHTML = ''; 
+        const formattedDate = getFormattedDate();
+
+        let uniqueListContent = ''; // 고유한 목록 내용을 임시로 저장
+
+        for (let i = 0; i < count; i++) {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomAddress = getRandomAddress();
+
+            uniqueListContent += `
+                <li>
+                    <div>${formattedDate}</div>    
+                    <div>${randomName}</div>       
+                    <div>${randomAddress}</div>    
+                </li>
+            `;
+        }
+
+        // 1. 고유 목록을 추가
+        listEl.innerHTML = uniqueListContent;
+        // 2. CSS 애니메이션을 위해 고유 목록을 한 번 더 복사하여 추가
+        // 이를 통해 스크롤이 끝났을 때 끊김 없이 시작으로 돌아가는 것처럼 보이게 됩니다.
+        listEl.innerHTML += uniqueListContent; 
+    }
+
+    // 1. 목록 생성 및 적용
+    generateTickerList();
 
 
 });
