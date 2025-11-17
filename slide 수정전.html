@@ -4,14 +4,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <!-- slick slider CSS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
-    <!-- 외부 css 분리본 -->
-    <link rel="stylesheet" href="./css/slide.css">
-
     <title>랜딩에 사용할 애니메이션</title>
+    <style>
+        a{text-decoration: none;}
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{
+            max-width: 800px; margin: auto;
+            position: relative; overflow-x: hidden; font-size: 20px;
+            font-family: 'Pretendard', sans-serif;
+        }
+
+        .outBox{position: relative;}
+
+        .loadBox{width: 100%; margin: auto; margin-top: 10%;}
+        .loadBox h2{margin-bottom: 3%;}
+
+        .codeText{width: 100%; margin: auto; margin-top: 4%;}
+        .buttonBox{display: flex; gap: 1em;}
+        .codeText button{
+            flex: 1;
+            background-color: #0071e2; color: white; text-align: center;
+            padding: 0.4em 0; border: none; font-size: 1em;
+            cursor: pointer; border-radius: 5px;
+        }
+        .hideCode{
+            width: 100%;
+            margin-top: 1.5em;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.3s ease;
+        }
+        .hideCode.open{ height: auto; }
+        pre {
+            background: #1e1e1e; color: #f8f8f2;
+            padding: 1em; border-radius: 6px;
+            overflow-x: auto; font-size: 0.9em;
+        }
+        pre code { font-family: 'Courier New', monospace; }
+
+        .movPageBox{width: 90%; margin: auto; display: flex; justify-content: space-between; margin-top: 5%; }
+    .goLoad{
+      width: 18%; font-size: 0.9em; text-align: center; background-color: cadetblue; margin-bottom: 2%; padding: 0.5em 0; word-break: keep-all; display: flex; justify-content: center; align-items: center;
+    }
+    .goLoad a{color: white; width: 100%; height: 100%; }
+
+
+        /* 카드슬라이드 */
+        .card-slide{width: 100%; margin-top: 5%; margin-bottom: 10%;}
+        .card-slide swiper-container {
+          width: 100%;
+        }
+    
+        .card-slide swiper-slide {
+          background-position: center;
+          background-size: cover;
+          width: 85%;
+          height: auto;
+        }
+    
+        .card-slide swiper-slide img {
+          display: block;
+          object-fit: contain;
+          width: 100%;
+        }
+
+
+        /* 슬라이드2 */
+        .loopslide1{
+            background-color: #ffffff;
+            width: 100%; overflow: hidden;
+        }
+
+        .loopslide1 .slider-wrapper {
+            width: 100%; position: relative;
+            overflow: hidden;
+        }
+
+        .loopslide1 .slider-track {
+            display: flex;
+            width: 100%; /* 전체 너비 사용 */
+            animation: scroll-left 33s linear infinite;
+        }
+
+        .loopslide1 .slide {
+            flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-252%); /* 슬라이드가 100% 이동하게 설정 */
+            }
+        }
+
+        .loopslide2{
+            background-color: #ffffff;
+            width: 100%; overflow: hidden;
+        }
+
+        .loopslide2 .slider-wrapper {
+            width: 100%; position: relative;
+            overflow: hidden;
+        }
+
+        .loopslide2 .slider-track {
+            display: flex;
+            width: 100%; /* 전체 너비 사용 */
+            animation: scroll-right 33s linear infinite;
+        }
+
+        .loopslide2 .slide {
+            flex: 0 0 28%; /* 슬라이드 크기를 100%로 설정하여 공백 없게 함 */
+        }
+
+        @keyframes scroll-right {
+            0% {
+                transform: translateX(-252%);
+            }
+            100% {
+                transform: translateX(0%); /* 슬라이드가 100% 이동하게 설정 */
+            }
+        }
+
+
+        /* slide4 */
+        .loopslide3{width: 100%; position: relative;}
+        .splide__slide img{width: 100%; object-fit: contain;}
+
+        /* slide5 */
+        .linkslide{display: flex; width: 100%; position: relative; overflow: hidden;}
+        .linkslide-slideL{
+            width: 58%; position: relative; margin-bottom: 5%; margin-left: 5%;
+        }
+        .splide2{position: relative; border: 1px solid #0094ee; border-radius: 1em; box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.226)}
+        .splide2 .splide__slide{ border-radius: 1em; overflow: hidden;}
+        /* 위치 */
+        /* 기본 dots 컨테이너 위치 */
+        .splide2 .splide__pagination {
+          bottom: -1.2em;   /* 위치 조정 */
+          right: -60%;
+        }
+        .splide2 .splide__pagination__page {
+            background: transparent;
+            border: 1px solid #3397cd;
+            width: 0.5em;
+            height: 0.5em;
+            margin: 0 5px;
+            border-radius: 50%;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+        .splide2 .splide__pagination__page.is-active {
+            background: #3397cd;  /* 활성 dot 색상 */
+            transform: scale(1.1);
+            opacity: 1;
+        }
+        .linkslide-slideR{
+            position: absolute; z-index: -1;
+            left: 35%; width: 95%;
+        }
+        .splide3{margin-top: 5%;}
+
+
+        /* slide6 */
+        /* 세로 카드 규격 (213x284 ≈ 3:4) */
+        #promo .splide { width: 100%; }
+
+        #promo .splide__slide{
+          width: clamp(6.5em, 24vw, 9em);  /* 소형~중형에서 자연스러운 폭 */
+          display:flex; justify-content:center; align-items:center;
+        }
+
+        /* 스케일은 card에만! (li는 그대로) */
+        .card6{
+          width: 100%;
+          aspect-ratio: 3 / 4;        /* 세로형 비율 유지 */
+          border-radius: 0.75em;
+          box-shadow: 0 0.833em 1.667em rgba(0,0,0,.35);
+          position: relative;
+          overflow: hidden;
+          transform-origin: 50% 60%;  /* 살짝 아래 중심 감성 */
+          transform: scale(.88) translateY(0.333em);
+          filter: blur(0.042em) brightness(.6);
+          opacity: .7;
+          will-change: transform, filter, opacity;
+          transition: transform .12s linear, filter .12s linear, opacity .12s linear;
+          margin-bottom: 1em;
+        }
+
+        /* 이미지 세로 맞춤 */
+        .card6 > img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;        /* 카드 안에서 전체 보이게 */
+          display: block;
+        }
+
+        /* 도트 */
+        #promo .splide__pagination{ bottom:-0.333em; gap:0.417em; }
+        #promo .splide__pagination__page{ width:0.333em;transform:scale(0.8); height:0.333em; background:#345163; opacity:0.3; }
+        #promo .splide__pagination__page.is-active{ transform:scale(0.95); background:#29b8ff; opacity:1; }
+
+        /* 화살표 숨김 */
+        #promo  .splide__arrows{ display:none; }
+
+        .movBox{width: 95%;; margin: auto; margin-top: 5%; position: relative;}
+.listBox{
+    width: 100%; height: 70vh; overflow: hidden;
+    position: relative;  color: black; padding: 0 2.5%;
+    display: flex; justify-content: left;
+}
+.ticker {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+}
+.ticker-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    /* CSS 애니메이션 적용 */
+    animation: scroll-up 20s linear infinite; 
+    /* 애니메이션 일시 정지 방지 (선택 사항) */
+    white-space: nowrap; 
+    will-change: transform; /* 성능 최적화 */
+}
+/* 무한 스크롤을 위한 핵심 애니메이션 정의 */
+@keyframes scroll-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        /* 목록의 절반 높이만큼 이동 (JS에서 목록을 두 배로 복사할 것임) */
+        transform: translateY(-50%); 
+    }
+}
+.ticker-list li {
+    background-color: rgb(250, 250, 250);
+    margin-bottom: 4%; box-shadow: 0 0.3em 0.3em rgba(0, 0, 0, 0.096);
+    border-radius: 0.5em;
+    position: relative;
+    height: 3.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.ticker-list li div:nth-child(1){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(2){
+    width: calc(100% / 3); text-align: center;
+}
+.ticker-list li div:nth-child(3){
+    width: calc(100% / 3); text-align: center;
+}
+
+
+
+
+    </style>
 </head>
 <body>
 
@@ -956,105 +1210,240 @@ generateTickerList();
         </div>
     </div>
 
-    <!-- 이벤트 8 : Slick 가운데 확대 슬라이드 -->
-<div class="loadBox">
-    <h2>📌 이벤트 8 — Slick 가운데 확대 슬라이드 //안정적_추천</h2>
 
-    <div class="outBox">
-        <!-- 실제 슬라이드 적용 구역 -->
-        <div class="your-class slick-slide8">
-            <div style="background-color: aqua;">your content1</div>
-            <div style="background-color: aqua;">your content2</div>
-            <div style="background-color: aqua;">your content3</div>
-            <div style="background-color: aqua;">your content4</div>
-            <div style="background-color: aqua;">your content5</div>
-        </div>
-    </div>
-
-    <div class="codeText">
-        <div class="buttonBox">
-            <button class="showBtn">코드 보기</button>
-            <button class="copyCssBtn">CSS 복사</button>
-            <button class="copyHtmlBtn">HTML 복사</button>
-            <button class="copyJsBtn">JS 복사</button>
-        </div>
-        <div class="hideCode">
-            <p>style</p>
-            <pre><code>
-&lt;!-- slick slider CSS --&gt;
-&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css&quot;/&gt;
-&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css&quot;/&gt;
-
-.your-class{font-size: 24px;}
-.your-class div{
-    background:#ffffff;
-    padding: 1.5em 0;
-    text-align:center;
-    margin: 0%;
-}
-.your-class .slick-slide{
-    transition: transform .7s ease;
-    opacity: 0.5;
-}
-.your-class .slick-center{
-    transform: scale(1.2);
-    opacity: 1;
-}
-            </code></pre>
-
-            <p>html</p>
-            <pre><code>
-&lt;!-- HTML --&gt;
-&lt;div class=&quot;your-class&quot;&gt;
-    &lt;div style=&quot;background-color: aqua;&quot;&gt;your content1&lt;/div&gt;
-    &lt;div style=&quot;background-color: aqua;&quot;&gt;your content2&lt;/div&gt;
-    &lt;div style=&quot;background-color: aqua;&quot;&gt;your content3&lt;/div&gt;
-    &lt;div style=&quot;background-color: aqua;&quot;&gt;your content4&lt;/div&gt;
-    &lt;div style=&quot;background-color: aqua;&quot;&gt;your content5&lt;/div&gt;
-&lt;/div&gt;
-            </code></pre>
-
-            <p>js</p>
-            <pre><code>
-&lt;!-- jquery --&gt;
-&lt;script src=&quot;https://code.jquery.com/jquery-1.11.0.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://code.jquery.com/jquery-migrate-1.2.1.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;!-- slick slider JS --&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js&quot;&gt;&lt;/script&gt;
-
-&lt;script&gt;
-$(document).ready(function(){
-    $(&#39;.your-class&#39;).slick({
-        centerMode: true,
-        centerPadding: &#39;20%&#39;,
-        slidesToShow: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        infinite: true
-    });
-});
-&lt;/script&gt;
-            </code></pre>
-        </div>
-    </div>
-</div>
-
-
-    <!-- jQuery (slick 필수) -->
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-<!-- slick slider JS -->
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-<!-- 외부 script 그대로 유지 -->
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide-extension-auto-scroll@0.5.3/dist/js/splide-extension-auto-scroll.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
 
-<!-- 내부 script -->
-<script src="./js/slide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+<script>
+// 모든 로딩 박스 반복
+document.querySelectorAll('.loadBox').forEach(box => {
+    const showBtn = box.querySelector('.showBtn');
+    const copyCssBtn = box.querySelector('.copyCssBtn');
+    const copyHtmlBtn = box.querySelector('.copyHtmlBtn');
+    const copyJsBtn = box.querySelector('.copyJsBtn');
+    const hideCode = box.querySelector('.hideCode');
+    const codes = box.querySelectorAll('pre code');
+
+    // 코드 보기 버튼
+    showBtn.addEventListener('click', () => {
+        hideCode.classList.toggle('open');
+        showBtn.textContent = hideCode.classList.contains('open') ? '코드 숨기기' : '코드 보기';
+    });
+
+    // CSS 복사
+    copyCssBtn.addEventListener('click', () => {
+        const cssCode = codes[0].innerText.trim();
+        navigator.clipboard.writeText(cssCode)
+            .then(() => alert('CSS 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    // HTML 복사
+    copyHtmlBtn.addEventListener('click', () => {
+        const htmlCode = codes[1].innerText.trim();
+        navigator.clipboard.writeText(htmlCode)
+            .then(() => alert('HTML 코드가 복사되었습니다!'))
+            .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+    });
+
+    //js 복사
+    copyJsBtn.addEventListener('click', () => {
+        const jsCode = codes[2]?.innerText.trim();
+        if(jsCode){
+            navigator.clipboard.writeText(jsCode)
+                .then(() => alert('JS 코드가 복사되었습니다!'))
+                .catch(() => alert('복사 실패. 브라우저 권한을 확인하세요.'));
+        } else {
+            alert('복사할 JS 코드가 없습니다.');
+        }
+    });
+
+    new Splide('.splide1', {
+        type   : 'loop',
+        drag   : 'none',
+        focus  : 'center',
+        perPage: 3,
+        autoHeight: true,
+        autoScroll: { speed: 0.5 },
+        arrows: false,       // ⬅➡ 버튼 
+        pagination: false,   //점 네비
+        gap: '0.5em',
+    }).mount( window.splide.Extensions );
+
+    const primarySlider = new Splide('.splide2', {
+        type : 'loop', 
+        perPage  : 1, 
+        perMove  : 1,
+        gap  : '0.5rem',
+        arrows : false, 
+        pagination: false, 
+        autoplay : true, 
+        interval : 3000,
+        pauseOnHover: false,
+            // ???? splide2 조작은 그대로 허용합니다.
+    }).mount(); 
+
+    // 3. secondarySlider (splide3 - 3개씩) 인스턴스 정의 및 마운트
+    const secondarySlider = new Splide('.splide3', {
+        type : 'loop',
+        perPage : 3,
+        perMove : 1,
+        gap : '0.5rem',
+        arrows: false, 
+        pagination: false, 
+        autoplay : false, 
+        interval : 3000,
+        pauseOnHover: false,
+        focus: 'center', 
+        trimSpace: false, 
+    }).mount();
+        
+    // 4. 이벤트 리스너를 사용하여 수동으로 동기화합니다.
+    // splide2가 이동할 때 (move 이벤트), splide3를 같은 인덱스로 이동시킵니다.
+    primarySlider.on('move', (newIndex) => {
+        // secondarySlider를 primarySlider의 현재 인덱스(newIndex)로 이동시킵니다.
+        // focus: 'center' 옵션 덕분에 newIndex가 splide3의 가운데로 오게 됩니다.
+        secondarySlider.go(newIndex);
+    });
+        
+    // 5. 추가 조치: 자동 재생의 시작도 맞춰줍니다.
+    primarySlider.on('autoplay:play', () => {
+        secondarySlider.play();
+    });
+    primarySlider.on('autoplay:pause', () => {
+        secondarySlider.pause();
+    });
+    // primarySlider의 마운트 이후 secondarySlider가 현재 인덱스를 따라가도록 초기 이동
+    secondarySlider.go(primarySlider.index);
+
+
+
+    const splide6 = new Splide('#promo', {
+        type: 'loop',
+        focus: 'center',
+        perPage: 3,
+        gap: '1em',                 // 24px -> 1em
+        pagination: false,
+        arrows: false,
+        drag: false,
+        snap: false,
+        speed: 700,
+        autoplay: true,
+        interval: 2600,
+        pauseOnHover: false,
+    }).mount();
+
+    const root   = splide6.root;
+    const track6  = root.querySelector('.splide__track');
+    const slides6 = root.querySelectorAll('.splide__slide');
+
+    function updateScales(){
+        const rect6    = track6.getBoundingClientRect();
+        const centerX = rect6.left + rect6.width / 2;
+        const maxDist = rect6.width / 2;
+        slides6.forEach((li) => {
+            const card = li.querySelector('.card6');
+            const r = li.getBoundingClientRect();
+            const slideCenter = r.left + r.width / 2;
+            const dist  = Math.abs(centerX - slideCenter);
+            const t = Math.max(0, 1 - dist / maxDist); // 0~1
+            // 스케일: 0.88 ~ 1.06
+            const scale = 0.68 + t * (1.2 - 0.88);
+            const blurPx = (1 - t) * 1;    // 1px ~ 0px
+            const bright = 0.6 + t * 0.4;  // 0.6 ~ 1.0
+            const opacity = 0.7 + t * 0.3; // 0.7 ~ 1.0
+            card.style.transform = `scale(${scale}) translateY(0.333em)`;
+            card.style.filter    = `blur(${blurPx}px) brightness(${bright})`;
+            card.style.opacity   = opacity;
+        });
+        requestAnimationFrame(updateScales);
+    }
+    requestAnimationFrame(updateScales);
+
+        
+
+    const regionMap = {
+                // ... (지역 데이터는 그대로 유지) ...
+                '서울특별시': ['강남구', '강동구', '강북구', '강서구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
+                '부산광역시': ['강서구', '금정구', '기장군', '남구', '동구', '동래구', '부산진구', '북구', '사상구', '사하구', '서구', '수영구', '연제구', '영도구', '중구', '해운대구'],
+                '인천광역시': ['강화군', '계양구', '남동구', '동구', '미추홀구', '부평구', '서구', '연수구', '옹진군', '중구'],
+                '대구광역시': ['남구', '달서구', '달성군', '동구', '북구', '서구', '수성구', '중구'],
+                '광주광역시': ['광산구', '남구', '동구', '북구', '서구'],
+                '대전광역시': ['대덕구', '동구', '서구', '유성구', '중구'],
+                '울산광역시': ['남구', '동구', '북구', '울주군', '중구'],
+                '세종특별자치시': ['세종시'],
+                '경기도': ['가평군', '고양시', '과천시', '광명시', '광주시', '구리시', '군포시', '김포시', '남양주시', '동두천시', '부천시', '성남시', '수원시', '시흥시', '안산시', '안성시', '안양시', '양주시', '양평군', '여주시', '연천군', '오산시', '용인시', '의왕시', '의정부시', '이천시', '파주시', '평택시', '포천시', '하남시', '화성시'],
+                '강원도': ['강릉시', '고성군', '동해시', '삼척시', '속초시', '양구군', '양양군', '영월군', '원주시', '인제군', '정선군', '철원군', '춘천시', '태백시', '평창군', '홍천군', '화천군', '횡성군'],
+                '충청북도': ['괴산군', '단양군', '보은군', '영동군', '옥천군', '음성군', '제천시', '진천군', '청주시', '충주시'],
+                '충청남도': ['계룡시', '공주시', '금산군', '논산시', '당진시', '보령시', '부여군', '서산시', '서천군', '아산시', '예산군', '천안시', '청양군', '태안군', '홍성군'],
+                '경상북도': ['경산시', '경주시', '고령군', '구미시', '군위군', '김천시', '문경시', '봉화군', '상주시', '성주군', '안동시', '영덕군', '영양군', '영주시', '영천시', '예천군', '울릉군', '울진군', '의성군', '청도군', '청송군', '칠곡군', '포항시'],
+                '경상남도': ['거제시', '거창군', '고성군', '김해시', '남해군', '밀양시', '사천시', '산청군', '양산시', '의령군', '진주시', '창녕군', '창원시', '통영시', '하동군', '함안군', '함양군', '합천군'],
+                '전라북도': ['고창군', '군산시', '김제시', '남원시', '무주군', '부안군', '순창군', '완주군', '익산시', '임실군', '장수군', '전주시', '정읍시', '진안군'],
+                '전라남도': ['강진군', '고흥군', '곡성군', '광양시', '구례군', '나주시', '담양군', '목포시', '무안군', '보성군', '순천시', '신안군', '여수시', '영광군', '영암군', '완도군', '장성군', '장흥군', '진도군', '함평군', '해남군', '화순군'],
+                '제주특별자치도': ['서귀포시', '제주시']
+            };
+        
+    // 티커 데이터
+    const names = ['김*수', '박*현', '이*연', '최*우', '한*리', '정*석', '윤*빈', '오*우', '송*철', '강*경',
+                '배*진', '신*호', '조*연', '서*우', '임*선', '문*아', '남*혁', '홍*지', '권*림', '노*찬',
+                '장*혁', '유*은', '하*리', '백*성', '곽*진', '안*별', '심*윤', '전*현', '류*재', '도*빈'];
+
+    // 날짜 포맷 함수
+    function getFormattedDate() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1; // getMonth()는 0부터 시작하므로 1을 더함
+        const day = today.getDate();
+        // YYYY-MM-DD 형식으로 반환 (padStart를 이용해 두 자리로 맞춤)
+        return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    }
+
+    // 랜덤 주소 생성 함수
+    function getRandomAddress() {
+        const provinces = Object.keys(regionMap);
+        const randomProv = provinces[Math.floor(Math.random() * provinces.length)];
+        const cities = regionMap[randomProv];
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+
+        const shortProv = randomProv.replace(/특별시|광역시|도|자치시|자치도/g, '').substring(0, 2);
+        return `${shortProv} ${randomCity}`;
+    }
+
+    // 새로운 목록 생성 및 적용 함수
+    function generateTickerList(count = 10) { // 고유 항목 10개 생성
+        const listEl = document.querySelector('.ticker-list');
+        listEl.innerHTML = ''; 
+        const formattedDate = getFormattedDate();
+
+        let uniqueListContent = ''; // 고유한 목록 내용을 임시로 저장
+
+        for (let i = 0; i < count; i++) {
+            const randomName = names[Math.floor(Math.random() * names.length)];
+            const randomAddress = getRandomAddress();
+
+            uniqueListContent += `
+                <li>
+                    <div>${formattedDate}</div>    
+                    <div>${randomName}</div>       
+                    <div>${randomAddress}</div>    
+                </li>
+            `;
+        }
+
+        // 1. 고유 목록을 추가
+        listEl.innerHTML = uniqueListContent;
+        // 2. CSS 애니메이션을 위해 고유 목록을 한 번 더 복사하여 추가
+        // 이를 통해 스크롤이 끝났을 때 끊김 없이 시작으로 돌아가는 것처럼 보이게 됩니다.
+        listEl.innerHTML += uniqueListContent; 
+    }
+
+    // 1. 목록 생성 및 적용
+    generateTickerList();
+
+
+});
+</script>
 
 </body>
 </html>
