@@ -164,6 +164,18 @@ optionContainer.addEventListener("click", e => {
         
         return;
     }
+
+    /* 다중 선택 옵션 (multi-option) 토글 기능 추가 */
+    if (e.target.classList.contains("multi-option")) {
+        
+        // 1. active 클래스 토글 (색상 변경)
+        e.target.classList.toggle("active"); 
+        
+        // 2. 값(Value) 업데이트 로직은 폼 생성 시에 처리되므로, 
+        //    빌더 화면에서는 active 클래스 토글만으로 충분합니다.
+        
+        return;
+    }
 });
 
 /* ============================================================

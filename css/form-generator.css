@@ -358,3 +358,10 @@ a { text-decoration: none; }
 }
 .telBox input{width: 28%;}
 .telBox p{width: 2.5%; height: 0.1em; background-color: #000;}
+
+.multi-option.active {
+    /* 선택되었을 때의 디자인 */
+    background: #ff8a00; /* 예시: 주황색 배경 */
+    color: #fff;
+    border-color: #ff8a00;
+}
