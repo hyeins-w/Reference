@@ -165,18 +165,8 @@ optionContainer.addEventListener("click", e => {
         return;
     }
 
-    /* 다중 선택 옵션 (multi-option) 토글 기능 추가 */
-    if (e.target.classList.contains("multi-option")) {
-        
-        // 1. active 클래스 토글 (색상 변경)
-        e.target.classList.toggle("active"); 
-        
-        // 2. 값(Value) 업데이트 로직은 폼 생성 시에 처리되므로, 
-        //    빌더 화면에서는 active 클래스 토글만으로 충분합니다.
-        
-        return;
-    }
 });
+
 
 /* ============================================================
    5. 폼 생성 버튼
@@ -251,6 +241,51 @@ document.querySelector("#previewBtn").onclick = () => {
 };
 
 function bindPreviewEvents() {
+
+
+    /* 미리보기: multi 옵션 활성화 처리 */
+previewTarget.querySelectorAll(".multi-group").forEach(group => {
+    const fieldName = group.dataset.name;
+    const hiddenInput = group.parentElement.querySelector(
+        "input[type='text'][name='" + fieldName + "']"
+    );
+
+    let selected = new Set();
+
+    group.querySelectorAll(".multi-option").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const value = btn.dataset.value;
+
+            // "없음" 버튼이 있을 경우 처리
+            const noneBtn = group.querySelector(".no-selection");
+
+            if (btn.classList.contains("no-selection")) {
+                // 없음 선택 시 나머지 비활성화
+                group.querySelectorAll(".multi-option").forEach(b => b.classList.remove("active"));
+                selected.clear();
+                btn.classList.add("active");
+                selected.add(value);
+            } else {
+                // 없음 버튼이 있었다면 비활성화
+                if (noneBtn) noneBtn.classList.remove("active");
+
+                // 기존처럼 토글
+                if (btn.classList.contains("active")) {
+                    btn.classList.remove("active");
+                    selected.delete(value);
+                } else {
+                    btn.classList.add("active");
+                    selected.add(value);
+                }
+            }
+
+            hiddenInput.value = Array.from(selected).join(",");
+        });
+    });
+});
+
+
+
     /* 지역 처리 */
     const prov = previewTarget.querySelector("#province");
     const city = previewTarget.querySelector("#city");
