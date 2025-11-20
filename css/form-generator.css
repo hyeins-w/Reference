@@ -361,7 +361,32 @@ a { text-decoration: none; }
 
 .multi-option.active {
     /* 선택되었을 때의 디자인 */
-    background: #ff8a00; /* 예시: 주황색 배경 */
+    background: #0078c8; /* 예시: 주황색 배경 */
     color: #fff;
-    border-color: #ff8a00;
+    border-color: #0078c8;
 }
+
+@media (max-width: 800px) {
+            body { width: 100%; font-size: 28px;}
+        }
+        @media (min-width: 646px) and (max-width: 730px) {
+            body { width: 100%; font-size: 25px;}
+        }
+        @media (min-width: 591px) and (max-width: 645px) {
+            body { width: 100%; font-size: 23px;}
+        }
+        @media (min-width: 526px) and (max-width: 590px) {
+            body { width: 100%; font-size: 20px;}
+            
+        }
+        @media (min-width: 466px) and (max-width: 525px) {
+            body { width: 100%; font-size: 18px;}
+        }
+        
+        @media (min-width: 380px) and (max-width: 465px) {
+            body { width: 100%; font-size: 15px;}
+            
+        }
+        @media (max-width: 379px) {
+            body { width: 100%; font-size: 11.5px;}
+        }
