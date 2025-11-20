@@ -325,3 +325,36 @@ a { text-decoration: none; }
     border-radius: 10px;
     border: 1px solid #ddd;
 }
+
+.telBox{width: 100%; display: flex; justify-content: space-between; align-items: center;}
+.telBox>div{width: 28%; position: relative;}
+.telBox>div::after {
+    content: '▼';
+    position: absolute;
+    top: 50%;
+    right: 1em;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 1;
+}
+.telBox select{
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    font: inherit;
+    background: none;
+    padding: 0;
+    margin: 0;
+    background-color: #fff;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+.telBox input{width: 28%;}
+.telBox p{width: 2.5%; height: 0.1em; background-color: #000;}

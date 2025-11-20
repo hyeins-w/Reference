@@ -32,10 +32,10 @@ export const FieldTemplates = {
                 <option>017</option>
             </select>
         </div>
-        <p>_</p>
+        <p></p>
         <input type="text" maxlength="4" name="tel2" class="ph-Num2" required 
                placeholder="연락처" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
-        <p>_</p>
+        <p></p>
         <input type="text" maxlength="4" name="tel3" class="ph-Num2" required 
                placeholder="연락처" oninput="this.value=this.value.replace(/[^0-9]/g,'');"/>
     </div>
