@@ -153,12 +153,15 @@ optionContainer.addEventListener("click", e => {
     if (e.target.classList.contains("opt-toggle-values")) {
         const card = e.target.closest(".option-card");
         const box = card.querySelector(".value-box");
-
-        box.classList.toggle("hidden");
-        e.target.textContent = box.classList.contains("hidden")
-            ? "Value 입력 열기 ▼"
-            : "Value 입력 닫기 ▲";
-
+        
+        // [수정!] 'hidden' 대신 CSS에 정의된 'open' 클래스를 토글합니다.
+        box.classList.toggle("open"); 
+        
+        // 버튼 텍스트 변경 로직도 'open' 클래스 확인으로 변경합니다.
+        e.target.textContent = box.classList.contains("open")
+            ? "Value 입력 닫기 ▲"
+            : "Value 입력 열기 ▼";
+        
         return;
     }
 });
